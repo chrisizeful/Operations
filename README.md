@@ -31,7 +31,7 @@ Operation op =
             Eat().SetGuard(GrassNearby()), // Custom operation and guard
             Die().SetGuard(HungerGuard(0), // Custom operation and guard
             Wander())                      // Custom operation
-    ).SetTarget(cow);
+    ).SetTarget(cow).SetProcessMode(Node.ProcessModeEnum.Always);
 // In Process()...
 Operator.Process(delta, op);
 ```
