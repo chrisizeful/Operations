@@ -23,3 +23,7 @@ window/size/viewport_height=720
 [dotnet]
 
 project/assembly_name="Operations"
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.631851, 0.756244, 0.988595, 1)
