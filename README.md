@@ -3,7 +3,7 @@ Operations provides a quick and efficient way to animate and create complex beha
 
 Example usage for the death animation of 2D character may look like this:
 ```C#
-using static Operations;
+using static Operations.Op;
 
 Node target = ...;
 Operation op =

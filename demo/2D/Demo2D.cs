@@ -1,4 +1,5 @@
 using Godot;
+using static Operations.Op;
 
 namespace Operations;
 
@@ -17,8 +18,8 @@ public partial class Demo2D : Node2D
 			character.Position = new(GD.RandRange(0, 1280), GD.RandRange(0, 720));
 			AddChild(character);
 
-			oper.Add(Op.Sequence(
-				Op.NodeMove2D(new(GD.RandRange(0, 1280), GD.RandRange(0, 720)), 5.0f, false)
+			oper.Add(Sequence(
+				NodeMove2D(new(GD.RandRange(0, 1280), GD.RandRange(0, 720)), 5.0f, false)
 			).SetTarget(character));
 		}
 	}

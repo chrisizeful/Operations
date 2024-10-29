@@ -67,7 +67,7 @@ public class Operation : IPoolable
     /// </summary>
     /// <param name="target">The object to target.</param>
     /// <param name="force">Whether to set the target on the guard and children even if it is not null.</param>
-    /// <returns></returns>
+    /// <returns>This operation for chaining.</returns>
     public Operation SetTarget(object target, bool force = false)
     {
         Target = target;
@@ -85,7 +85,7 @@ public class Operation : IPoolable
     /// Sets how this operation behaves when the <see cref="SceneTree"/> is paused.
     /// </summary>
     /// <param name="mode">The mode to use.</param>
-    /// <returns></returns>
+    /// <returns>This operation for chaining.</returns>
     public Operation SetProcessMode(Node.ProcessModeEnum mode)
     {
         // Inherit target process mode
@@ -108,7 +108,7 @@ public class Operation : IPoolable
     /// Sets how this operation behaves when the <see cref="Target"/> is invalidated (i.e. freed from memory).
     /// </summary>
     /// <param name="invalid">The policy to use.</param>
-    /// <returns></returns>
+    /// <returns>This operation for chaining.</returns>
     public Operation SetInvalidPolicy(InvalidPolicy invalid)
     {
         Invalid = invalid;
@@ -135,7 +135,7 @@ public class Operation : IPoolable
     /// <summary>
     /// A mostly unused method that can be used for debug or other purposes.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>This operation for chaining.</returns>
     public virtual Operation Display()
     {
         foreach (Operation child in Children)
