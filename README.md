@@ -77,7 +77,7 @@ public static partial class Op
 ```
 
 ### Targeting
-Operations can target a specifc object. This allows a single operation to act on different nodes (or custom objects):
+Operations can target a specifc object. Setting the target on an operation will set the target for all of its children, if the child does not already have a target. This allows a single operation to act on different nodes (or custom objects):
 ```C#
 using static Operations.Op;
 
@@ -86,12 +86,11 @@ Node human = ...;
 Node cat = ...;
 Operation op =
     Parallel(
-        NodeRotate2D(-90, 2.0f).SetTarget(cow),
+        NodeRotate2D(-90, 2.0f),    // This operation will target the cow, since no target was specified
         NodeRotate2D(90, 2.0f).SetTarget(human),
         Free().SetTarget(cat)
-    );
+    ).SetTarget(cow);               // This will set the target for all children that don't have a target
 ```
-
 ### Guards
 Operations can optionally have a guard operation set. The actual usage of the guard is left up to the individual operation. For example, the GuardSelectorOperation runs the first child operation whose guard returns a successful status code. A guard is simply an Operatoin that can be evaluated as SUCCEEDED or FAILED in a single frame. Setting a guard is easy:
 ```C#
