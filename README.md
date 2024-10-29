@@ -21,4 +21,6 @@ Operator.Process(delta, op);
 ```
 
 ### Licensing
-Operations is licensed under MIT - you are free to use it however you wish. Do note, however: the Pools class, Pool class, and IPoolable interface are licensed under the Apache License, Version 2.0. The demo project uses assets from Kenney's CC0 licensed [Shape Characters](https://kenney.nl/assets/shape-characters) and [Toy Car Kit](https://kenney.nl/assets/toy-car-kit) asset packs.
+Operations is licensed under MIT - you are free to use it however you wish.
+
+Do note, however, that all classes in Pools.cs are modified from [libGDX](https://github.com/libgdx/libgdx), which licensed under the Apache License, Version 2.0. See the pools folder for more information. The demo project uses assets from Kenney's CC0 licensed [Shape Characters](https://kenney.nl/assets/shape-characters) and [Toy Car Kit](https://kenney.nl/assets/toy-car-kit) asset packs.
