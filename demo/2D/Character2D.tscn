@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dya66i5ci8xbf"]
+
+[ext_resource type="Texture2D" uid="uid://ddhwv28sscpp0" path="res://assets/kenney_shape-characters/body/blue/blue_body_circle.png" id="1_7fxww"]
+[ext_resource type="Texture2D" uid="uid://dwesi2iu6cykt" path="res://assets/kenney_shape-characters/face/face_a.png" id="2_mbh3a"]
+
+[node name="Character" type="Sprite2D"]
+texture = ExtResource("1_7fxww")
+
+[node name="Face" type="Sprite2D" parent="."]
+texture = ExtResource("2_mbh3a")

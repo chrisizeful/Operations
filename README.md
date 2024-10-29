@@ -1,5 +1,5 @@
 # Operations
-Operations provides a quick and easy way to animate, and create complex behavior trees in the Godot game engine. A large collection of built-in operations are provided, with custom operations being very easy to make.
+Operations provides a quick and efficient way to animate and create complex behavior trees in the Godot game engine. A large collection of built-in operations are provided, with custom operations being very easy to make.
 
 Example usage for the death animation of 2D character may look like this:
 ```C#
