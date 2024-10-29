@@ -92,7 +92,7 @@ Operation op =
     ).SetTarget(cow);            // This will set the target for all children that don't have a target
 ```
 ### Guards
-Operations can optionally have a guard operation set. The actual usage of the guard is left up to the individual operation. For example, the GuardSelectorOperation runs the first child operation whose guard returns a successful status code. A guard is simply an Operatoin that can be evaluated as SUCCEEDED or FAILED in a single frame. Setting a guard is easy:
+Operations can optionally have a guard operation set. The actual usage of the guard is left up to the individual operation. For example, the GuardSelectorOperation runs the first child operation whose guard returns a successful status code. A guard is simply an Operation that can be evaluated as SUCCEEDED or FAILED in a single frame. Setting a guard is easy:
 ```C#
 // Example custom guard
 public class IsHitGuard : Operation
