@@ -35,7 +35,7 @@ Operation op =
 // In Process()...
 Operator.Process(delta, op);
 ```
-### Custom operations
+### Custom Operations
 All operations extend from the Operation base class. A custom operation need only implement the Act() method. Although, many should also override the Restart(), Reset(), and End() methods. See the Operation class for all overridable methods, and built-in operations for common usage. For time based operations, extend TimeOperation or NRelativeOperation.
 
 A basic example that prints a message and immediately returns a success status code:
@@ -61,7 +61,7 @@ public class CustomOperation : Operation
 }
 ```
 
-### Utility methods
+### Utility Methods
 All operations define a method in the Op class for easy static usage (see prior examples). Adding utility methods for your custom classes requires you create a partial Op class:
 ```C#
 public static partial class Op
@@ -86,10 +86,10 @@ Node human = ...;
 Node cat = ...;
 Operation op =
     Parallel(
-        NodeRotate2D(-90, 2.0f),    // This operation will target the cow, since no target was specified
+        NodeRotate2D(-90, 2.0f), // This operation will target the cow, since no target was specified
         NodeRotate2D(90, 2.0f).SetTarget(human),
         Free().SetTarget(cat)
-    ).SetTarget(cow);               // This will set the target for all children that don't have a target
+    ).SetTarget(cow);            // This will set the target for all children that don't have a target
 ```
 ### Guards
 Operations can optionally have a guard operation set. The actual usage of the guard is left up to the individual operation. For example, the GuardSelectorOperation runs the first child operation whose guard returns a successful status code. A guard is simply an Operatoin that can be evaluated as SUCCEEDED or FAILED in a single frame. Setting a guard is easy:
@@ -111,7 +111,7 @@ Operation op =
     Sequence(
         NodeRotate2D(-90, 2.0f).SetGuard(IsHitGuard()), // Custom operation guard
         NodeRotate2D(90, 2.0f).SetGuard(IsHitGuard()),  // Custom operation guard
-    );
+    ).SetTarget(human);
 ```
 
 ### Operator
@@ -125,7 +125,7 @@ oper.Add(op);
 oper.Process(delta);
 ```
 
-Optionally, you can choose to run operations individually. Note that in this case you are responsible for freeing it when the operation completes.
+Optionally, you can choose to run operations individually in order to implement a custom solution. Note that in this case you are responsible for freeing it when the operation completes.
 ```C#
 Operation op = ...;
 // In Process()
