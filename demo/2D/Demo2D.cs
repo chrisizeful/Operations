@@ -12,6 +12,7 @@ public partial class Demo2D : Node2D
 	{
 		oper = new(GetTree());
 		GD.Randomize();
+		
 		for (int i = 0; i < 20; i++)
 		{
 			Sprite2D character = ResourceLoader.Load<PackedScene>("res://demo/2D/Character2D.tscn").Instantiate<Sprite2D>();

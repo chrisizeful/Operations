@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bmdlb2bi12esh"]
+[gd_scene load_steps=4 format=3 uid="uid://bmdlb2bi12esh"]
 
 [ext_resource type="Script" path="res://demo/3D/Demo3D.cs" id="1_r0lka"]
 
+[sub_resource type="Environment" id="Environment_hhb6i"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ax23r"]
+size = Vector2(100, 100)
+
 [node name="Demo3D" type="Node3D"]
 script = ExtResource("1_r0lka")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hhb6i")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3, 4)
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ax23r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+shadow_enabled = true
