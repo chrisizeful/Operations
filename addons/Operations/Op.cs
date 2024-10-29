@@ -407,62 +407,62 @@ public static partial class Op
     /// Modulates the targets alpha 0-1.
     /// </summary>
     public static Operation ControlFadeIn(params object[] targets)
-	{
-		ParallelOperation visible = Parallel();
-		Array.ForEach(targets, t => visible.Children.Add(NodeVisible(true).SetTarget(t)));
-		ParallelOperation para = Parallel();
-		foreach (Control target in targets)
-		{
+    {
+        ParallelOperation visible = Parallel();
+        Array.ForEach(targets, t => visible.Children.Add(NodeVisible(true).SetTarget(t)));
+        ParallelOperation para = Parallel();
+        foreach (Control target in targets)
+        {
             target.SetThreadSafe("modulate", new Color(1, 1, 1, 0));
-			para.Children.Add(NodeModulate(new Color(1, 1, 1, 1), .15f).SetTarget(target));
-		}
-		return Sequence(visible, para);
-	}
+            para.Children.Add(NodeModulate(new Color(1, 1, 1, 1), .15f).SetTarget(target));
+        }
+        return Sequence(visible, para);
+    }
 
     /// <summary>
     /// Modulates the targets alpha 1-0.
     /// </summary>
-	public static Operation ControlFadeOut(params object[] targets)
-	{
-		ParallelOperation visible = Parallel();
-		Array.ForEach(targets, t => visible.Children.Add(NodeVisible(false).SetTarget(t)));
-		ParallelOperation para = Parallel();
-		foreach (Control target in targets)
-			para.Children.Add(NodeModulate(new Color(1, 1, 1, 0), .15f).SetTarget(target));
-		return Sequence(para, visible);
-	}
+    public static Operation ControlFadeOut(params object[] targets)
+    {
+        ParallelOperation visible = Parallel();
+        Array.ForEach(targets, t => visible.Children.Add(NodeVisible(false).SetTarget(t)));
+        ParallelOperation para = Parallel();
+        foreach (Control target in targets)
+            para.Children.Add(NodeModulate(new Color(1, 1, 1, 0), .15f).SetTarget(target));
+        return Sequence(para, visible);
+    }
 
     public static Operation ControlScaleIn(params object[] targets) => ControlScaleIn(Tween.TransitionType.Linear, Tween.EaseType.InOut, targets);
     /// <summary>
     /// Interpolates the targets scale from .5-1.
     /// </summary>
     public static Operation ControlScaleIn(Tween.TransitionType transType, Tween.EaseType easeType, params object[] targets)
-	{
-		ParallelOperation visible = Parallel();
-		Array.ForEach(targets, t => visible.Children.Add(NodeVisible(true).SetTarget(t)));
-		ParallelOperation para = Parallel();
-		foreach (Control target in targets)
-		{
+    {
+        ParallelOperation visible = Parallel();
+        Array.ForEach(targets, t => visible.Children.Add(NodeVisible(true).SetTarget(t)));
+        ParallelOperation para = Parallel();
+        foreach (Control target in targets)
+        {
             target.SetThreadSafe("pivot_offset", target.Size / 2);
             target.SetThreadSafe("scale", new Vector2(.5f, .5f));
-			para.Children.Add(NodeScale2D(new Vector2(1.0f, 1.0f), .15f, false, false, transType, easeType).SetTarget(target));
-		}
-		return Sequence(visible, para);
-	}
+            para.Children.Add(NodeScale2D(new Vector2(1.0f, 1.0f), .15f, false, false, transType, easeType).SetTarget(target));
+        }
+        return Sequence(visible, para);
+    }
 
     public static Operation ControlScaleOut(params object[] targets) => ControlScaleOut(Tween.TransitionType.Linear, Tween.EaseType.InOut, targets);
     /// <summary>
     /// Interpolates the targets scale from 1-.5.
     /// </summary>
-	public static Operation ControlScaleOut(Tween.TransitionType transType, Tween.EaseType easeType, params object[] targets)
-	{
-		ParallelOperation visible = Parallel();
-		Array.ForEach(targets, t => visible.Children.Add(NodeVisible(false).SetTarget(t)));
-		ParallelOperation para = Parallel();
-		foreach (Control target in targets)
-			para.Children.Add(NodeScale2D(new Vector2(.5f, .5f), .15f, false, false, transType, easeType).SetTarget(target));
-		return Sequence(para, visible);
-	}
+    public static Operation ControlScaleOut(Tween.TransitionType transType, Tween.EaseType easeType, params object[] targets)
+    {
+        ParallelOperation visible = Parallel();
+        Array.ForEach(targets, t => visible.Children.Add(NodeVisible(false).SetTarget(t)));
+        ParallelOperation para = Parallel();
+        foreach (Control target in targets)
+            para.Children.Add(NodeScale2D(new Vector2(.5f, .5f), .15f, false, false, transType, easeType).SetTarget(target));
+        return Sequence(para, visible);
+    }
 
 
     public static Operation ControlScaleFadeIn(params object[] targets) => ControlScaleFadeIn(Tween.TransitionType.Linear, Tween.EaseType.InOut, 1.0f, targets);
@@ -472,38 +472,38 @@ public static partial class Op
     /// Modulates the targets alpha 0-1. and interpolates the targets scale from .5-1.
     /// </summary>
     public static Operation ControlScaleFadeIn(Tween.TransitionType transType, Tween.EaseType easeType, float alpha, params object[] targets)
-	{
-		ParallelOperation visible = Parallel();
-		Array.ForEach(targets, t => visible.Children.Add(NodeVisible(true).SetTarget(t)));
-		ParallelOperation para = Parallel();
-		foreach (Control target in targets)
-		{
+    {
+        ParallelOperation visible = Parallel();
+        Array.ForEach(targets, t => visible.Children.Add(NodeVisible(true).SetTarget(t)));
+        ParallelOperation para = Parallel();
+        foreach (Control target in targets)
+        {
             target.SetThreadSafe("pivot_offset", target.Size / 2);
             target.SetThreadSafe("scale", new Vector2(.5f, .5f));
             target.SetThreadSafe("modulate", new Color(1, 1, 1, 0));
-			para.Children.Add(NodeScale2D(new Vector2(1.0f, 1.0f), .15f, false, false, transType, easeType).SetTarget(target));
-			para.Children.Add(NodeModulate(new Color(1, 1, 1, alpha), .15f, false).SetTarget(target));
-		}
-		return Sequence(visible, para);
-	}
+            para.Children.Add(NodeScale2D(new Vector2(1.0f, 1.0f), .15f, false, false, transType, easeType).SetTarget(target));
+            para.Children.Add(NodeModulate(new Color(1, 1, 1, alpha), .15f, false).SetTarget(target));
+        }
+        return Sequence(visible, para);
+    }
 
-	public static Operation ControlScaleFadeOut(params object[] targets) => ControlScaleFadeOut(Tween.TransitionType.Linear, Tween.EaseType.InOut, 0, targets);
+    public static Operation ControlScaleFadeOut(params object[] targets) => ControlScaleFadeOut(Tween.TransitionType.Linear, Tween.EaseType.InOut, 0, targets);
     public static Operation ControlScaleFadeOut(float alpha, params object[] targets) => ControlScaleFadeOut(Tween.TransitionType.Linear, Tween.EaseType.InOut, alpha, targets);
     public static Operation ControlScaleFadeOut(Tween.TransitionType transType, Tween.EaseType easeType, params object[] targets) => ControlScaleFadeOut(transType, easeType, 0, targets);
     /// <summary>
     /// Modulates the targets alpha 1-0. and interpolates the targets scale from 1-.5.
     /// </summary>
     public static Operation ControlScaleFadeOut(Tween.TransitionType transType, Tween.EaseType easeType, float alpha, params object[] targets)
-	{
-		ParallelOperation visible = Parallel();
-		Array.ForEach(targets, t => visible.Children.Add(NodeVisible(false).SetTarget(t)));
-		ParallelOperation para = Parallel();
-		foreach (Control target in targets)
-		{
-			target.PivotOffset = target.Size / 2;
-			para.Children.Add(NodeScale2D(new Vector2(.5f, .5f), .15f, false, false, transType, easeType).SetTarget(target));
-			para.Children.Add(NodeModulate(new Color(1, 1, 1, alpha), .15f, false).SetTarget(target));
-		}
-		return Sequence(para, visible);
-	}
+    {
+        ParallelOperation visible = Parallel();
+        Array.ForEach(targets, t => visible.Children.Add(NodeVisible(false).SetTarget(t)));
+        ParallelOperation para = Parallel();
+        foreach (Control target in targets)
+        {
+            target.PivotOffset = target.Size / 2;
+            para.Children.Add(NodeScale2D(new Vector2(.5f, .5f), .15f, false, false, transType, easeType).SetTarget(target));
+            para.Children.Add(NodeModulate(new Color(1, 1, 1, alpha), .15f, false).SetTarget(target));
+        }
+        return Sequence(para, visible);
+    }
 }
