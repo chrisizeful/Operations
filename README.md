@@ -5,7 +5,7 @@ Example usage for the death animation of a 2D character may look like this:
 ```C#
 using static Operations.Op;
 
-Node target = ...;
+Node character = ...;
 Operation op =
     Sequence(
         NodeMove2D(new(0, 32), 2.0f),
@@ -15,7 +15,23 @@ Operation op =
             NodeModulate(new(1, 0, 0, 0), 1.0f),
         Wait(1.0f),
         Free()
-    ).SetTarget(target);
+    ).SetTarget(character);
+// In Process()...
+Operator.Process(delta, op);
+```
+
+Example usage for the behavior tree of a basic cow may look like this:
+```C#
+using static Operations.Op;
+
+Node cow = ...;
+Operation op =
+    Repeat(
+        GuardSelector(
+            Eat().SetGuard(GrassNearby()), // Custom operation and guard
+            Die().SetGuard(HungerGuard(0), // Custom operation and guard
+            Wander())                       // Custom operation
+    ).SetTarget(cow);
 // In Process()...
 Operator.Process(delta, op);
 ```
