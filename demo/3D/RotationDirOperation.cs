@@ -25,6 +25,7 @@ public class RotateDirOperation : TimeOperation
 
     public override Status Act(double delta)
     {
+        // Call base act beforehand instead of just returning it so the Percent will be correct when used.
         Status status = base.Act(delta);
         float rotationY = Mathf.LerpAngle(start, rotTarget, (float) Percent);
         Node3D target = (Node3D) Target;
