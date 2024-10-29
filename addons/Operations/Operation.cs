@@ -317,7 +317,7 @@ public class Operation : IPoolable
     public static bool IsNodeValid(object target)
     {
         Node node = (Node) target;
-        return !GodotObject.IsInstanceValid(node) || node.IsQueuedForDeletion();
+        return GodotObject.IsInstanceValid(node) && !node.IsQueuedForDeletion();
     }
     
     /// <summary>
