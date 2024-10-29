@@ -30,7 +30,7 @@ Operation op =
         GuardSelector(
             Eat().SetGuard(GrassNearby()), // Custom operation and guard
             Die().SetGuard(HungerGuard(0), // Custom operation and guard
-            Wander())                       // Custom operation
+            Wander())                      // Custom operation
     ).SetTarget(cow);
 // In Process()...
 Operator.Process(delta, op);
