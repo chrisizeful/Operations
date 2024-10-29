@@ -5,8 +5,8 @@ namespace Operations;
 /// <summary>
 /// Plays a particles scene at a specified <see cref="Position"/>. The particles can be any one of the Godot particle nodes.
 /// </summary>
-[Operation("Particles")]
-public class ParticleOperation : Operation
+[Operation("NodeParticles")]
+public class NParticleOperation : Operation
 {
 
     /// <summary>

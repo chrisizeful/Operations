@@ -187,17 +187,17 @@ public static partial class Op
         return NodeRelative<NMove3DOperation>(position, duration, relative, global, transType, easeType);
     }
 
-    public static ParticleOperation Particles2D(string path, Vector2 position = default)
+    public static NParticleOperation Particles2D(string path, Vector2 position = default)
     {
-        ParticleOperation operation = Pools.Obtain<ParticleOperation>();
+        NParticleOperation operation = Pools.Obtain<NParticleOperation>();
         operation.Path = path;
         operation.Position = position;
         return operation;
     }
 
-    public static ParticleOperation Particles3D(string path, Vector3 position = default)
+    public static NParticleOperation Particles3D(string path, Vector3 position = default)
     {
-        ParticleOperation operation = Pools.Obtain<ParticleOperation>();
+        NParticleOperation operation = Pools.Obtain<NParticleOperation>();
         operation.Path = path;
         operation.Position = position;
         return operation;
