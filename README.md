@@ -130,7 +130,7 @@ Optionally, you can choose to run operations individually in order to implement 
 ```C#
 Operation op = ...;
 // In Process()
-if (op != null && Operator.Process(delta, op))
+if (op != null && Operator.Process(GetTree(), op))
 {
     Pools.Free(op);
     op = null;

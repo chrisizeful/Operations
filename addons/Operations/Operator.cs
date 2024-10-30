@@ -49,7 +49,7 @@ public partial class Operator
         for (int i = _operations.Count - 1; i >= 0; i--)
         {
             Operation operation = _operations[i];
-            if (Process(delta, operation))
+            if (Process(Tree, operation))
             {
                 _operations.RemoveAt(i);
                 Pools.Free(operation);
@@ -74,14 +74,14 @@ public partial class Operator
     /// <param name="delta">Delta time between frames.</param>
     /// <param name="operation">The operation to process.</param>
     /// <returns>If the operation has finished processing (succeeded, failed, or was cancelled).</returns>
-    public bool Process(double delta, Operation operation)
+    public static bool Process(SceneTree tree, Operation operation)
     {
         // Check pause mode - always/inherit fall through
         if (operation.ProcessMode == Node.ProcessModeEnum.Disabled)
             return false;
-        if (!Tree.Paused && operation.ProcessMode == Node.ProcessModeEnum.WhenPaused)
+        if (!tree.Paused && operation.ProcessMode == Node.ProcessModeEnum.WhenPaused)
             return false;
-        if (Tree.Paused && operation.ProcessMode == Node.ProcessModeEnum.Pausable)
+        if (tree.Paused && operation.ProcessMode == Node.ProcessModeEnum.Pausable)
             return false;
         // Remove if target is invalidated or operation succeeded, failed, or cancelled
         if (operation.Target == null)
@@ -91,7 +91,7 @@ public partial class Operator
         if (!operation.TargetValidator.Invoke(operation.Target))
             return true;
         // Run
-        operation.Run(delta);
+        operation.Run(tree.Root.GetProcessDeltaTime());
         return false;
     }
 
