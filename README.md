@@ -3,7 +3,7 @@
 
 Operations provides a quick and efficient way to programmatically create animations and complex behavior trees in the Godot game engine. A large collection of built-in operations are provided, with custom operations being very easy to make. See below for basic usage of the API, and the demos for more complex usages. Note that at the moment only C# is supported.
 
-![Preview](https://github.com/user-attachments/assets/2e4592a7-1a19-4cdc-a25a-4522b6d2acbf)
+![Preview](https://i.imgur.com/HE5rFuH.gif)
 
 ### Examples
 Example usage for the death animation of a 2D character may look like this:
