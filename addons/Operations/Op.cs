@@ -16,9 +16,10 @@ public static partial class Op
         return operation;
     }
 
-    public static AddOperation Add(Operation operation)
+    public static AddOperation Add(Operator @operator, Operation operation)
     {
         AddOperation add = Pools.Obtain<AddOperation>();
+        add.Operator = @operator;
         add.Operation = operation;
         return add;
     }
