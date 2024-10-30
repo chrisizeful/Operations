@@ -19,8 +19,6 @@ Operation op =
         Wait(1.0f),
         Free()
     ).SetTarget(character);
-// In Process()...
-Operator.Process(delta, op);
 ```
 
 Example usage for the behavior tree of a basic cow may look like this:
@@ -35,8 +33,6 @@ Operation op =
             Die().SetGuard(HungerGuard(0), // Custom operation and guard
             Wander())                      // Custom operation
     ).SetTarget(cow).SetProcessMode(Node.ProcessModeEnum.Always);
-// In Process()...
-Operator.Process(delta, op);
 ```
 ### Custom Operations
 All operations extend from the Operation base class. A custom operation need only implement the Act() method. Although, many should also override the Restart(), Reset(), and End() methods. See the Operation class for all overridable methods, and built-in operations for common usage. For time based operations, extend TimeOperation or NRelativeOperation.
