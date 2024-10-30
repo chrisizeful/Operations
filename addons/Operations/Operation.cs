@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Godot;
 using System;
+using System.Linq;
 
 namespace Operations;
 
@@ -27,9 +28,10 @@ public class Operation : IPoolable
     /// </summary>
     public object Target;
     /// <summary>
-    /// The validator to determine if the <see cref="Target"/> is ... valid. Defaults to <see cref="IsNodeValid"/>.
+    /// A cached validator used to validate <see cref="Target"/>.
+    /// Automatically set when <see cref="SetTarget"/> is called.
     /// </summary>
-    public Validator TargetValidator = IsNodeValid;
+    public Validator TargetValidator;
     /// <summary>
     /// The Node to operate on, provided for convenience.
     /// </summary>
@@ -62,8 +64,8 @@ public class Operation : IPoolable
     }
 
     /// <summary>
-    /// Sets the object to target. Will also set the target of the <see cref="Guard"/> and children if they are null or
-    /// <paramref name="force"/> is true.
+    /// Sets the object to target and validator to use. Will also set the target of the <see cref="Guard"/> and children if
+    /// they are null or <paramref name="force"/> is true.
     /// </summary>
     /// <param name="target">The object to target.</param>
     /// <param name="force">Whether to set the target on the guard and children even if it is not null.</param>
@@ -71,6 +73,8 @@ public class Operation : IPoolable
     public Operation SetTarget(object target, bool force = false)
     {
         Target = target;
+        Type type = target.GetType();
+        TargetValidator = Operator.TargetValidators.FirstOrDefault(e => e.Key.IsAssignableFrom(type)).Value;
         // Set target for guard
         if (Guard != null && (Guard.Target == null || force))
             Guard.SetTarget(Target, force);
@@ -251,8 +255,8 @@ public class Operation : IPoolable
         // Return if cancelled, failed, or succeeded
         if (Current is not Status.Running and not Status.Fresh)
             return;
-        // Fail if target is not valid
-        if (!TargetValidator.Invoke(Target))
+        // Fail if no validator or target is not valid
+        if (TargetValidator == null || !TargetValidator.Invoke(Target))
         {
             if (Invalid == InvalidPolicy.Success) Success();
             else Fail();
@@ -308,17 +312,6 @@ public class Operation : IPoolable
     /// <param name="target">The target of an operation.</param>
     /// <returns></returns>
     public delegate bool Validator(object target);
-
-    /// <summary>
-    /// The default validator that determines if a <see cref="Godot.Node"/> is valid.
-    /// </summary>
-    /// <param name="target">The target of an operation.</param>
-    /// <returns>If the target is valid and not queued for deletion.</returns>
-    public static bool IsNodeValid(object target)
-    {
-        Node node = (Node) target;
-        return GodotObject.IsInstanceValid(node) && !node.IsQueuedForDeletion();
-    }
     
     /// <summary>
     /// An enum for determining the status after an operation is run.

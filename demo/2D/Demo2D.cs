@@ -11,7 +11,7 @@ public partial class Demo2D : Node2D
 
 	Operator oper;
 
-	public override void _Process(double delta) => oper.Process(delta);
+	public override void _Process(double delta) => oper.Process();
 	public override void _Ready()
 	{
 		oper = new(GetTree());

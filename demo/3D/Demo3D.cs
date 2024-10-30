@@ -12,7 +12,7 @@ public partial class Demo3D : Node3D
 
 	Operator oper;
 
-	public override void _Process(double delta) => oper.Process(delta);
+	public override void _Process(double delta) => oper.Process();
 	public override void _Ready()
 	{
 		oper = new(GetTree());

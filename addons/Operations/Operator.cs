@@ -19,6 +19,14 @@ public partial class Operator
     /// an <see cref="OperationAttribute"/> but can be overriden using this dictionary.
     /// </summary>
     public static IReadOnlyDictionary<string, Type> Aliases => _aliases;
+    
+    /// <summary>
+    /// Validators to determine if a <see cref="Operation.Target"/> is ... valid. Contains a Node validator <see cref="IsNodeValid"/> by default.
+    /// </summary>
+    public static Dictionary<Type, Operation.Validator> TargetValidators = new()
+    {
+        { typeof(Node), IsNodeValid }
+    };
 
     private List<Operation> _operations = new();
     /// <summary>
@@ -43,7 +51,7 @@ public partial class Operator
     /// Processes all added operations.
     /// </summary>
     /// <param name="delta">Delta time between frames.</param>
-    public void Process(double delta)
+    public void Process()
     {
         // Iterate backwards through operations, running and then freeing them
         for (int i = _operations.Count - 1; i >= 0; i--)
@@ -69,6 +77,17 @@ public partial class Operator
     }
 
     /// <summary>
+    /// The default validator that determines if a <see cref="Node"/> is valid.
+    /// </summary>
+    /// <param name="target">The target of an operation.</param>
+    /// <returns>If the target is valid and not queued for deletion.</returns>
+    public static bool IsNodeValid(object target)
+    {
+        Node node = (Node) target;
+        return GodotObject.IsInstanceValid(node) && !node.IsQueuedForDeletion();
+    }
+
+    /// <summary>
     /// Process a single operation.
     /// </summary>
     /// <param name="delta">Delta time between frames.</param>
@@ -88,7 +107,7 @@ public partial class Operator
             return true;
         if (operation.Current is not Operation.Status.Running and not Operation.Status.Fresh)
             return true;
-        if (!operation.TargetValidator.Invoke(operation.Target))
+        if (operation.TargetValidator == null || !operation.TargetValidator.Invoke(operation.Target))
             return true;
         // Run
         operation.Run(tree.Root.GetProcessDeltaTime());

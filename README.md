@@ -123,7 +123,7 @@ Operator oper = new(GetTree());
 Operation op = ...;
 oper.Add(op);
 // In Process()
-oper.Process(delta);
+oper.Process();
 ```
 
 Optionally, you can choose to run operations individually in order to implement a custom solution. Note that in this case you are responsible for freeing it when the operation completes.
