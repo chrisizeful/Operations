@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmdlb2bi12esh"]
+
+[ext_resource type="Script" path="res://demo/DemoSharp/3D/Demo3D.cs" id="1_r0lka"]
+
+[sub_resource type="Environment" id="Environment_hhb6i"]
+
+[node name="Demo3D" type="Node3D"]
+script = ExtResource("1_r0lka")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hhb6i")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3, 4)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+shadow_enabled = true

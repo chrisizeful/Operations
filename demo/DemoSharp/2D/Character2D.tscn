@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dya66i5ci8xbf"]
+
+[ext_resource type="Texture2D" uid="uid://ddhwv28sscpp0" path="res://assets/kenney_shape-characters/body/blue/blue_body_circle.png" id="1_7fxww"]
+[ext_resource type="Script" path="res://demo/DemoSharp/2D/Character2D.cs" id="2_chyoi"]
+[ext_resource type="Texture2D" uid="uid://dwesi2iu6cykt" path="res://assets/kenney_shape-characters/face/face_a.png" id="2_mbh3a"]
+[ext_resource type="Texture2D" uid="uid://ga0q37p1v8j7" path="res://assets/kenney_shape-characters/hand/blue/blue_hand_closed.png" id="4_0nujw"]
+
+[node name="Character" type="Sprite2D" node_paths=PackedStringArray("Face", "HandLeft", "HandRight")]
+texture = ExtResource("1_7fxww")
+script = ExtResource("2_chyoi")
+Face = NodePath("Face")
+HandLeft = NodePath("HandLeft")
+HandRight = NodePath("HandRight")
+
+[node name="Face" type="Sprite2D" parent="."]
+texture = ExtResource("2_mbh3a")
+
+[node name="HandLeft" type="Sprite2D" parent="."]
+position = Vector2(-64, 0)
+texture = ExtResource("4_0nujw")
+flip_h = true
+
+[node name="HandRight" type="Sprite2D" parent="."]
+position = Vector2(64, 0)
+texture = ExtResource("4_0nujw")
