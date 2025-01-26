@@ -1,4 +1,4 @@
-class_name VisibleOperation
+class_name NVisibleOperation
 extends Operation
 ## A convenience operation to toggle the visibility of a node.
 

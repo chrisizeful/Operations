@@ -9,7 +9,7 @@ func _ready():
 	
 	for i in range(20):
 		# Create a character
-		var character := ResourceLoader.load("res://demo/DemoSharp/2D/Character2D.tscn").instantiate() as Character2D
+		var character := ResourceLoader.load("res://demo/DemoScript/2D/character2D.tscn").instantiate() as Character2D
 		character.position = Vector2(randf_range(0, 1280), randf_range(0, 720))
 		add_child(character)
 		

@@ -1,4 +1,4 @@
-class_name FreeOperation
+class_name NFreeOperation
 extends Operation
 ## Calls <see cref="Node.QueueFree"/> on the target and immediatley returns <see cref="Operation.Status.Succeeded"/>.
 

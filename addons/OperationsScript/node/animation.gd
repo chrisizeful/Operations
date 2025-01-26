@@ -1,4 +1,4 @@
-class_name AnimationOperation
+class_name NAnimationOperation
 extends TimeOperation
 ## Plays the <see cref="Animation"/> from an <see cref="AnimationPlayer"/>. Succeeds
 ## when the animation finishes playing. Note that if the animation is set to loop the
