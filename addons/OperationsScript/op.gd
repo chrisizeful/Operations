@@ -1,5 +1,6 @@
 class_name Op
 extends Object
+## Provides convient methods for quickly creating pooled operations.
 
 #region Basic
 
@@ -58,19 +59,19 @@ static func process_mode(target : Operation, mode : Node.ProcessMode) -> Process
 	operation.mode = mode
 	return operation
 
-static func sound(path : String, bus : String = "Sound") -> SoundOperation:
+static func sound(path : String, bus := "Sound") -> SoundOperation:
 	var operation := Pools.obtain(ProcessModeOperation)
 	operation.path = path
 	operation.bus = bus
 	return operation
 
-static func sound_2D(path : String, position : Vector2, bus : String = "Sound") -> Sound2DOperation:
+static func sound_2D(path : String, position : Vector2, bus := "Sound") -> Sound2DOperation:
 	var operation := Pools.obtain(Sound2DOperation)
 	operation.path = path
 	operation.bus = bus
 	return operation
 
-static func sound_3D(path : String, position : Vector3, bus : String = "Sound") -> Sound3DOperation:
+static func sound_3D(path : String, position : Vector3, bus := "Sound") -> Sound3DOperation:
 	var operation := Pools.obtain(Sound3DOperation)
 	operation.path = path
 	operation.bus = bus
@@ -88,19 +89,62 @@ static func wait(duration : float) -> TimeOperation:
 
 #region Node
 
-static func animation(animation : StringName, custom_blend : float = -1, custom_speed : float = 1, from_end : bool = false) -> AnimationOperation:
-	var operation := Pools.obtain(AnimationOperation)
+static func animation(animation : StringName, custom_blend := -1.0, custom_speed := 1.0, from_end := false) -> NAnimationOperation:
+	var operation := Pools.obtain(NAnimationOperation)
 	operation.animation = animation
 	operation.custom_blend = custom_blend
 	operation.custom_speed = custom_speed
 	operation.from_end = from_end
 	return operation
 
-static func animation_backwards(animation : StringName, custom_blend : float = -1, custom_speed : float = 1) -> AnimationOperation:
+static func animation_backwards(animation : StringName, custom_blend := -1.0, custom_speed := 1.0) -> NAnimationOperation:
 	return animation(animation, custom_blend, custom_speed * -1, true)
 
-static func free_node() -> FreeOperation:
-	return Pools.obtain(ManualOperation)
+static func free_node() -> NFreeOperation:
+	return Pools.obtain(NFreeOperation)
+
+static func node_method(method : Callable, from, to, duration : float, trans_type := Tween.TransitionType.TRANS_LINEAR, ease_type := Tween.EaseType.EASE_IN_OUT) -> NMethodOperation:
+	var operation := Pools.obtain(NMethodOperation)
+	operation.method = method
+	operation.from = from
+	operation.to = to
+	operation.duration = duration
+	operation.trans_type = trans_type
+	operation.ease_type = ease_type
+	return operation
+
+static func node_modulate(color : Color, duration : float, use_self := false, trans_type := Tween.TransitionType.TRANS_LINEAR, ease_type := Tween.EaseType.EASE_IN_OUT) -> NModulateOperation:
+	var operation := Pools.obtain(NModulateOperation)
+	operation.color = color
+	operation.use_self = use_self
+	operation.duration = duration
+	operation.trans_type = trans_type
+	operation.ease_type = ease_type
+	return operation
+
+static func particles2D(path : String, position := Vector2()) -> NParticleOperation:
+	var operation := Pools.obtain(NParticleOperation)
+	operation.path = path
+	operation.position = position
+	return operation
+
+static func particles3D(path : String, position := Vector3()) -> NParticleOperation:
+	var operation := Pools.obtain(NParticleOperation)
+	operation.path = path
+	operation.position = position
+	return operation
+
+static func node_property(property : StringName, delta : Variant, duration : float, trans_type := Tween.TransitionType.TRANS_LINEAR, ease_type := Tween.EaseType.EASE_IN_OUT) -> NPropertyOperation:
+	var operation := Pools.obtain(NModulateOperation)
+	operation.property = property
+	operation.delta = delta
+	operation.duration = duration
+	operation.trans_type = trans_type
+	operation.ease_type = ease_type
+	return operation
+
+static func node_ready() -> NReadyOperation:
+	return Pools.obtain(NReadyOperation)
 
 #endregion
 
@@ -148,7 +192,7 @@ static func random_selector() -> RandomSelectorOperation:
 static func random_sequence() -> RandomSequenceOperation:
 	return Pools.obtain(RandomSequenceOperation)
 
-static func repeat(child : Operation, limit : int = 0) -> RepeatOperation:
+static func repeat(child : Operation, limit := 0) -> RepeatOperation:
 	var operation := Pools.obtain(RepeatOperation)
 	operation.limit = limit
 	operation.children.append(child)

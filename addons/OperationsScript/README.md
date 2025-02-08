@@ -14,6 +14,7 @@ Example usage for the behavior tree of a basic cow may look like this:
 ```GDScript
 
 ```
+
 ### Custom Operations
 All operations extend from the Operation base class. A custom operation need only implement the Act() method. Although, many should also override the Restart(), Reset(), and End() methods. See the Operation class for all overridable methods, and built-in operations for common usage. For time based operations, extend TimeOperation or NRelativeOperation.
 
@@ -33,6 +34,7 @@ Operations can target a specifc object. Setting the target on an operation will 
 ```GDScript
 
 ```
+
 ### Guards
 Operations can optionally have a guard operation set. The actual usage of the guard is left up to the individual operation. For example, the GuardSelectorOperation runs the first child operation whose guard returns a successful status code. A guard is simply an Operation that can be evaluated as SUCCEEDED or FAILED in a single frame. Setting a guard is easy:
 ```GDScript

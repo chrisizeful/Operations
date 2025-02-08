@@ -36,6 +36,7 @@ Operation op =
             Wander())                      // Custom operation
     )).SetTarget(cow).SetProcessMode(Node.ProcessModeEnum.Always);
 ```
+
 ### Custom Operations
 All operations extend from the Operation base class. A custom operation need only implement the Act() method. Although, many should also override the Restart(), Reset(), and End() methods. See the Operation class for all overridable methods, and built-in operations for common usage. For time based operations, extend TimeOperation or NRelativeOperation.
 
@@ -92,6 +93,7 @@ Operation op =
         Free().SetTarget(cat)
     ).SetTarget(cow);            // This will set the target for all children that don't have a target
 ```
+
 ### Guards
 Operations can optionally have a guard operation set. The actual usage of the guard is left up to the individual operation. For example, the GuardSelectorOperation runs the first child operation whose guard returns a successful status code. A guard is simply an Operation that can be evaluated as SUCCEEDED or FAILED in a single frame. Setting a guard is easy:
 ```C#

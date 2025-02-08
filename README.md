@@ -5,6 +5,31 @@ Operations provides a quick and efficient way to programmatically create animati
 
 ![Preview](https://i.imgur.com/HE5rFuH.gif)
 
+### Quick Example
+Example usage for the death animation of a 2D character may look like this:
+
+#### C#
+```C#
+using static Operations.Op;
+
+Node character = ...;
+Operation op =
+    Sequence(
+        NodeMove2D(new(0, 32), 2.0f),
+        Parallel(
+            NodeScale2D(new(2.0f, 2.0f), 1.0f),
+            NodeRotate2D(90.0f, 1.0f)),
+            NodeModulate(new(1, 0, 0, 0), 1.0f),
+        Wait(1.0f),
+        Free()
+    ).SetTarget(character);
+```
+
+#### GDScript
+```GDScript
+
+```
+
 ### Installation
 Copy either OperationsScript or OperationsSharp from the addons folder into the addons folder of your project. Read more about installing and enabling addons [here](https://docs.godotengine.org/en/stable/tutorials/plugins/editor/installing_plugins.html). The C# version is alternatively available as a Nuget package.
 
