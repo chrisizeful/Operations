@@ -93,7 +93,7 @@ func display() -> Operation:
 ## Called once when operation is first run (i.e. <see cref="Current"/> is <see cref="Status.Fresh"/>).
 func start():
 	for child in children:
-		child.start()
+		child.control = self
 
 ## Called when the operation succeeds, fails, or is cancelled.
 func end():

@@ -7,7 +7,7 @@ var value : Variant
 ## The name of the property that will be set to value.
 var property : StringName
 ## Whether value is relative to the current value or not. For example,
-## if Value is Vector2(200, 200) and a Node is positioned at (100, 100):
+## if value is Vector2(200, 200) and a Node is positioned at (100, 100):
 ##	 Relative: ending position will be (300, 300)
 ##	 Not relative: ending position will be (200, 200)
 var relative : bool
