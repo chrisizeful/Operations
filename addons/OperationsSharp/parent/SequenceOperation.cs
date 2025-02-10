@@ -44,7 +44,7 @@ public class SequenceOperation : Operation
 
     public override Status Act(double delta)
     {
-        // Always this operation to be run like in a single frame like a guard evaluator
+        // Run operation in a single frame like a guard evaluator
         if (delta == 0)
             return Resolve();
         if (Index >= Children.Count)

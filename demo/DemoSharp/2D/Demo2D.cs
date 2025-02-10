@@ -34,7 +34,7 @@ public partial class Demo2D : Node2D
 						// Free the previous operation
 						parent.Children.ForEach(Pools.Free);
 						parent.Children.Clear();
-						// Add a new move operation
+						// Add a new move operation, have to make sure set the target again
 						parent.Children.Add(NodeMove2D(
 							new((float) GD.RandRange(0.0f, 1280.0f), (float) GD.RandRange(0.0f, 720.0f)),
 							duration,

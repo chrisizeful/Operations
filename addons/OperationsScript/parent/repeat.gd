@@ -4,8 +4,11 @@ extends Operation
 
 ## The number of times to run the child operation, or zero for infinite times.
 var limit := 1
-## How many times the child operation has been repeated.
 var _count : int
+## How many times the child operation has been repeated.
+var count : int:
+	get:
+		return _count
 
 func restart():
 	super.restart()

@@ -13,7 +13,7 @@ func _ready():
 		var character := ResourceLoader.load("res://demo/DemoScript/2D/character2D.tscn").instantiate() as Character2D
 		character.position = Vector2(randf_range(0, 1280), randf_range(0, 720))
 		add_child(character)
-		
+
 		# This operation is repeated infinitely. An action is used in order to create a new operation
 		# every repetition. Alternatively, the operation could've been stored outside the sequence and
 		# just had its data changed in the action (see Demo3D for that).
@@ -22,7 +22,7 @@ func _ready():
 		var action := func():
 			# Remove the previous operation
 			parent.children.clear()
-			# Add a new move operation
+			# Add a new move operation, have to make sure set the target again
 			parent.children.append(Op.node_move2D(
 				Vector2(randf_range(0, 1280), randf_range(0, 720)),
 				duration,

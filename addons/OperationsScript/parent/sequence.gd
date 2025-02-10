@@ -8,33 +8,36 @@ var policy := SequencePolicy.All
 var operation:
 	get:
 		return children[index]
+var _index : int
 ## The index in <see cref="Operation.Children"/> of the currently running operation.
-var index : int
+var index : int:
+	get:
+		return _index
 
 func restart():
 	super.restart()
-	index = 0
+	_index = 0
 
 func reset():
 	super.reset()
 	policy = SequencePolicy.All
 
 func child_success():
-	index += 1
+	_index += 1
 
 func child_fail():
 	if policy == SequencePolicy.Ignore:
-		index += 1
+		_index += 1
 	else:
 		fail()
 
 func act(delta : float) -> Status:
-	## Always this operation to be run like in a single frame like a guard evaluator
+	# Run operation in a single frame like a guard evaluator
 	if delta == 0:
 		return _resolve()
-	if index >= children.size():
+	if _index >= children.size():
 		return Status.Succeeded
-	children[index].run(delta)
+	children[_index].run(delta)
 	return Status.Running
 
 func _resolve() -> Status:

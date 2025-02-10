@@ -4,8 +4,11 @@ extends Operation
 
 ## The policy to use for defining how/when this operation will fail/succeed.
 var policy := ParallelPolicy.Sequence
+var _complete : int
 ## How many child operations have returned a passable <see cref="Operation.Status"/> according to the <see cref="Policy"/>.
-var complete : int
+var complete : int:
+	get:
+		return _complete
 
 func start():
 	super.start()
@@ -14,28 +17,28 @@ func start():
 
 func restart():
 	super.restart()
-	complete = 0
+	_complete = 0
 
 func reset():
 	super.reset()
 	policy = ParallelPolicy.Sequence
 
 func child_success():
-	complete += 1
+	_complete += 1
 	if policy == ParallelPolicy.Sequence:
-		if complete >= children.size():
+		if _complete >= children.size():
 			success()
-	elif policy == ParallelPolicy.Selector or complete >= children.size():
+	elif policy == ParallelPolicy.Selector or _complete >= children.size():
 		success()
 
 func child_fail():
-	complete += 1
+	_complete += 1
 	if policy == ParallelPolicy.Selector:
-		if complete >= children.size():
+		if _complete >= children.size():
 			fail()
 	elif policy == ParallelPolicy.Sequence:
 		fail()
-	elif complete >= children.size():
+	elif _complete >= children.size():
 		success()
 
 func act(delta : float) -> Status:

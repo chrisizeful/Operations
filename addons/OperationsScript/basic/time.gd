@@ -7,10 +7,16 @@ var duration : float
 ## Whether <see cref="Percent"/> will be reversed (1.0 - 0.0 instead of 0.0 - 1.0).
 var reverse : bool
 
+var _time : float
 ## How much time has elapsed so far.
-var time : float
+var time : float:
+	get:
+		return _time
+var _percent : float
 ## The percentage based on <see cref="Time"/> / <see cref="Duration"/>.
-var percent : float
+var percent : float:
+	get:
+		return _percent
 
 func restart():
 	super.restart()
@@ -18,12 +24,11 @@ func restart():
 	percent = 0
 
 func act(delta : float) -> Status:
-	print(percent)
-	time += delta
-	var percent = 1 if time >= duration else time / duration
-	self.percent = percent
+	_time += delta
+	var percent = 1 if _time >= duration else _time / duration
+	_percent = percent
 	if reverse:
-		self.percent = 1 - self.percent
+		_percent = 1 - _percent
 	if percent == 1 and children.size() != 0:
 		children[0].run(delta)
 		return Status.Running
