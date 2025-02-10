@@ -1,7 +1,9 @@
 # Operations
 [![NuGet](https://img.shields.io/nuget/v/GodotOperations.svg)](https://www.nuget.org/packages/GodotOperations/)
 
-Operations provides a quick and efficient way to programmatically create animations and complex behavior trees in the Godot game engine. A large collection of built-in operations are provided, with custom operations being very easy to make. It is available it both C# and GDSCript. For API usage and examples, see either the [GDScript README](https://github.com/chrisizeful/Operations/tree/main/addons/OperationsScript) or the [C# README](https://github.com/chrisizeful/Operations/tree/main/addons/OperationsSharp).
+Operations provides a quick and efficient way to programmatically create animations and complex behavior trees in the Godot game engine. A large collection of built-in operations are provided, with custom operations being very easy to make. It is available it both C# and GDSCript.
+
+For API usage and examples, see either the [GDScript README](https://github.com/chrisizeful/Operations/tree/main/addons/OperationsScript) or the [C# README](https://github.com/chrisizeful/Operations/tree/main/addons/OperationsSharp). The two APIs are essentially identical - with minor differences due to GDSCript language limitations. The only major difference is that operations are not pooled in GDScript.
 
 ![Preview](https://i.imgur.com/HE5rFuH.gif)
 
@@ -19,7 +21,7 @@ Operation op =
         Parallel(
             NodeScale2D(new(2.0f, 2.0f), 1.0f),
             NodeRotate2D(90.0f, 1.0f)),
-            NodeModulate(new(1, 0, 0, 0), 1.0f),
+        NodeModulate(new(1, 0, 0, 0), 1.0f),
         Wait(1.0f),
         Free()
     ).SetTarget(character);
@@ -27,7 +29,17 @@ Operation op =
 
 #### GDScript
 ```GDScript
-
+var character = ...
+var op =
+    Op.sequence(
+        Op.node_move2D(Vector2(0, 32), 2.0),
+        Op.parallel(
+            Op.node_scale2D(Vector2(2.0, 2.0), 1.0),
+            Op.node_rotate2D(90.0, 1.0)),
+        Op.node_modulate(Color(1, 0, 0, 0), 1.0),
+        Op.wait(1.0),
+        Op.free()
+    ).set_target(character)
 ```
 
 ### Installation

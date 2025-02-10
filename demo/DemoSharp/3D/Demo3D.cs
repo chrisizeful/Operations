@@ -12,7 +12,6 @@ public partial class Demo3D : Node3D
 
 	Operator oper;
 
-	public override void _Process(double delta) => oper.Process();
 	public override void _Ready()
 	{
 		oper = new(GetTree());
@@ -30,11 +29,11 @@ public partial class Demo3D : Node3D
 			// A sequence that bounces the scale up and down.
 			float duration = 3.0f;
 			int count = 4;
-			Operation scale = Sequence();
+			Operation scaler = Sequence();
 			for (int j = 0; j < count; j++)
 			{
-				scale.Children.Add(NodeScale3D(new(-.1f, -.1f, -.1f), duration / count / 2, true, false, Tween.TransitionType.Back));
-				scale.Children.Add(NodeScale3D(new(.1f, .1f, .1f), duration / count / 2, true, false, Tween.TransitionType.Back));
+				scaler.Children.Add(NodeScale3D(new(-.1f, -.1f, -.1f), duration / count / 2, true, false, Tween.TransitionType.Back));
+				scaler.Children.Add(NodeScale3D(new(.1f, .1f, .1f), duration / count / 2, true, false, Tween.TransitionType.Back));
 			}
 			// This operation is repeated infinitely. An action is used to update the operations every repetition.
 			Vector3 pos = new((float) GD.RandRange(-4.0f, 4.0f), 0, (float) GD.RandRange(-2.0f, 2.0f));
@@ -47,8 +46,10 @@ public partial class Demo3D : Node3D
 						move.Position = newPos;
 						dir.Position = newPos;
 					}),
-					Parallel(scale, dir, move)
+					Parallel(scaler, dir, move)
 				)).SetTarget(vehicle));
 		}
 	}
+
+	public override void _Process(double delta) => oper.Process();
 }

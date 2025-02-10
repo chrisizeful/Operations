@@ -3,7 +3,7 @@ using Godot;
 namespace Operations;
 
 /// <summary>
-/// Forces the target node to emit <see cref="Signal"/>.
+/// Forces the target node to emit the signal named <see cref="SignalName"/>.
 /// </summary>
 [Operation("NodeSignal")]
 public class NSignalOperation : TimeOperation
@@ -12,7 +12,7 @@ public class NSignalOperation : TimeOperation
     /// <summary>
     /// The name of the signal to emit.
     /// </summary>
-    public StringName Signal;
+    public StringName SignalName;
     /// <summary>
     /// Optional arguments to provide the signal.
     /// </summary>
@@ -20,7 +20,7 @@ public class NSignalOperation : TimeOperation
 
     public override Status Act(double delta)
     {
-        Node.EmitSignal(Signal, Args);
+        Node.EmitSignal(SignalName, Args);
         return Status.Succeeded;
     }
 }

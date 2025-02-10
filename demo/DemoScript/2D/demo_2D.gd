@@ -5,6 +5,7 @@ extends Node2D
 var oper : Operator
 
 func _ready():
+	oper = Operator.new(get_tree())
 	randomize()
 	
 	for i in range(20):
@@ -19,21 +20,25 @@ func _ready():
 		var duration := 3.0
 		var parent := Op.sequence()
 		var action := func():
-			# Free the previous operation
-			if parent.children.size() != 0:
-				Pools.free_obj(parent.children[0])
+			# Remove the previous operation
 			parent.children.clear()
 			# Add a new move operation
-			# TODO
+			parent.children.append(Op.node_move2D(
+				Vector2(randf_range(0, 1280), randf_range(0, 720)),
+				duration,
+				false, false,
+				Tween.TransitionType.TRANS_BACK,
+				Tween.EaseType.EASE_IN).set_target(character))
 		oper.add(Op.repeat(
 			Op.sequence(
 				Op.action(action),
 				Op.parallel(
 					Op.sequence(
-						
-					)
-				)
+						Op.node_scale2D(Vector2(.5, .5), duration / 2.0, false),
+						Op.node_scale2D(Vector2(1.0, 1.0), duration / 2.0, false)),
+					Op.node_rotate2D(90, duration),
+					parent)
 			)).set_target(character))
 
 func _process(delta: float) -> void:
-	pass
+	oper.process()

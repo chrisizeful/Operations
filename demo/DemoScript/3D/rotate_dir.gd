@@ -10,7 +10,6 @@ var _rot_target
 
 func start():
 	super.start()
-	var n : Node3D
 	var delta = node.position - position
 	_start = node.rotation.y
 	_rot_target = atan2(delta.x, delta.y)

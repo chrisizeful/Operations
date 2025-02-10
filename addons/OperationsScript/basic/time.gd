@@ -18,6 +18,7 @@ func restart():
 	percent = 0
 
 func act(delta : float) -> Status:
+	print(percent)
 	time += delta
 	var percent = 1 if time >= duration else time / duration
 	self.percent = percent

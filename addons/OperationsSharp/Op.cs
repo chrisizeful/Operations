@@ -231,6 +231,19 @@ public static partial class Op
         return operation;
     }
 
+    public static T NodeRelative<T>(StringName property, Variant value, float duration, bool relative = true, bool global = false, Tween.TransitionType transType = Tween.TransitionType.Linear, Tween.EaseType easeType = Tween.EaseType.InOut) where T : NRelativeOperation
+    {
+        T operation = Pools.Obtain<T>();
+        operation.Property = property;
+        operation.Value = value;
+        operation.Duration = duration;
+        operation.Relative = relative;
+        operation.Global = global;
+        operation.TransType = transType;
+        operation.EaseType = easeType;
+        return operation;
+    }
+
     public static NRotate2DOperation NodeRotate2D(float rotationDegrees, float duration, bool relative = true, bool global = false, Tween.TransitionType transType = Tween.TransitionType.Linear, Tween.EaseType easeType = Tween.EaseType.InOut)
     {
         return NodeRelative<NRotate2DOperation>(rotationDegrees, duration, relative, global, transType, easeType);
@@ -259,10 +272,10 @@ public static partial class Op
         return operation;
     }
     
-    public static NSignalOperation NodeSignal(StringName signal, params Variant[] args)
+    public static NSignalOperation NodeSignal(StringName signalName, params Variant[] args)
     {
         NSignalOperation operation = Pools.Obtain<NSignalOperation>();
-        operation.Signal = signal;
+        operation.SignalName = signalName;
         operation.Args = args;
         return operation;
     }
@@ -472,7 +485,7 @@ public static partial class Op
     public static Operation ControlScaleFadeIn(float alpha, params object[] targets) => ControlScaleFadeIn(Tween.TransitionType.Linear, Tween.EaseType.InOut, alpha, targets);
     public static Operation ControlScaleFadeIn(Tween.TransitionType transType, Tween.EaseType easeType, params object[] targets) => ControlScaleFadeIn(transType, easeType, 1.0f, targets);
     /// <summary>
-    /// Modulates the targets alpha 0-1. and interpolates the targets scale from .5-1.
+    /// Modulates the targets alpha 0-1 and interpolates the targets scale from .5-1.
     /// </summary>
     public static Operation ControlScaleFadeIn(Tween.TransitionType transType, Tween.EaseType easeType, float alpha, params object[] targets)
     {
@@ -494,7 +507,7 @@ public static partial class Op
     public static Operation ControlScaleFadeOut(float alpha, params object[] targets) => ControlScaleFadeOut(Tween.TransitionType.Linear, Tween.EaseType.InOut, alpha, targets);
     public static Operation ControlScaleFadeOut(Tween.TransitionType transType, Tween.EaseType easeType, params object[] targets) => ControlScaleFadeOut(transType, easeType, 0, targets);
     /// <summary>
-    /// Modulates the targets alpha 1-0. and interpolates the targets scale from 1-.5.
+    /// Modulates the targets alpha 1-0 and interpolates the targets scale from 1-.5.
     /// </summary>
     public static Operation ControlScaleFadeOut(Tween.TransitionType transType, Tween.EaseType easeType, float alpha, params object[] targets)
     {

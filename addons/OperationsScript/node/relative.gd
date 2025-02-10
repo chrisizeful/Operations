@@ -21,7 +21,6 @@ var _start : Variant
 var _goal : Variant
 
 func start():
-	var n : Node
 	_start = node.get(property)
 	_goal = _delta_value()
 

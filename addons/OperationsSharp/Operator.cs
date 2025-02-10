@@ -56,7 +56,7 @@ public partial class Operator
         for (int i = _operations.Count - 1; i >= 0; i--)
         {
             Operation operation = _operations[i];
-            if (Process(Tree, operation))
+            if (ProcessSingle(Tree, operation))
             {
                 _operations.RemoveAt(i);
                 Pools.Free(operation);
@@ -92,7 +92,7 @@ public partial class Operator
     /// <param name="tree">A reference to the SceneTree.</param>
     /// <param name="operation">The operation to process.</param>
     /// <returns>If the operation has finished processing (succeeded, failed, or was cancelled).</returns>
-    public static bool Process(SceneTree tree, Operation operation)
+    public static bool ProcessSingle(SceneTree tree, Operation operation)
     {
         // Check pause mode - always/inherit fall through
         if (operation.ProcessMode == Node.ProcessModeEnum.Disabled)

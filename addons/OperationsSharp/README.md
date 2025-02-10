@@ -31,9 +31,9 @@ Node cow = ...;
 Operation op =
     Repeat(
         GuardSelector(
-            Eat().SetGuard(GrassNearby()), // Custom operation and guard
-            Die().SetGuard(HungerGuard(0), // Custom operation and guard
-            Wander())                      // Custom operation
+            Eat().SetGuard(GrassNearby()),  // Custom operation and guard
+            Die().SetGuard(HungerGuard(0)), // Custom operation and guard
+            Wander()                        // Custom operation
     )).SetTarget(cow).SetProcessMode(Node.ProcessModeEnum.Always);
 ```
 
@@ -97,7 +97,7 @@ Operation op =
 ### Guards
 Operations can optionally have a guard operation set. The actual usage of the guard is left up to the individual operation. For example, the GuardSelectorOperation runs the first child operation whose guard returns a successful status code. A guard is simply an Operation that can be evaluated as SUCCEEDED or FAILED in a single frame. Setting a guard is easy:
 ```C#
-// Example custom guard
+// Example of a custom guard
 public class IsHitGuard : Operation
 {
     public bool Hit;
@@ -108,12 +108,12 @@ public class IsHitGuard : Operation
     }
 }
 
-// Example usage of a guard
+// Example usage of a custom guard
 Node human = ...;
 Operation op =
     Sequence(
         NodeRotate2D(-90, 2.0f).SetGuard(IsHitGuard()), // Custom operation guard
-        NodeRotate2D(90, 2.0f).SetGuard(IsHitGuard()),  // Custom operation guard
+        NodeRotate2D(90, 2.0f).SetGuard(IsHitGuard())   // Custom operation guard
     ).SetTarget(human);
 ```
 
@@ -132,7 +132,7 @@ Optionally, you can choose to run operations individually in order to implement 
 ```C#
 Operation op = ...;
 // In Process()
-if (op != null && Operator.Process(GetTree(), op))
+if (op != null && Operator.ProcessSingle(GetTree(), op))
 {
     Pools.Free(op);
     op = null;

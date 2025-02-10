@@ -5,7 +5,7 @@ extends Object
 
 ## Validators to determine if a <see cref="Operation.Target"/> is ... valid. Contains a Node validator <see cref="IsNodeValid"/> by default.
 static var target_validators := {
-	Node: is_node_valid
+	typeof(Node): is_node_valid
 }
 ## All of the operations currently being processed.
 var operations := []
@@ -23,7 +23,6 @@ func process():
 		var operation = operations[i]
 		if process_single(tree, operation):
 			operations.remove_at(i)
-			Pools.free_obj(operation)
 
 func add(operation : Operation):
 	if !operation.target:

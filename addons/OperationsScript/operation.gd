@@ -14,7 +14,9 @@ var target : Object
 ## Automatically set when <see cref="SetTarget"/> is called.
 var target_validator : Callable
 ## The Node to operate on, provided for convenience.
-var node
+var node : Node:
+	get:
+		return target as Node
 ## The current <see cref="Status"/> of this operation.
 var current : Status
 ## How this operation behaves when the <see cref="SceneTree"/> is paused.
@@ -179,7 +181,7 @@ func run(delta : float):
 		Status.Running:
 			running()
 
-## The core logic of an operationw which determines its status.
+## The core logic of an operation which determines its status.
 ## <param name="delta">Delta time between frames.</param>
 ## <returns>The current status.</returns>
 func act(delta : float) -> Status:
@@ -191,12 +193,6 @@ func reset():
 	control = null
 	target = null
 	process_mode = Node.PROCESS_MODE_PAUSABLE
-	# Free guard
-	if guard:
-		Pools.free_obj(guard)
-	# Free children
-	for child in children:
-		Pools.free_obj(child)
 	children.clear()
 
 ## An enum for determining the status after an operation is run.
