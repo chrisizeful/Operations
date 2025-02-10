@@ -331,34 +331,144 @@ static func until_succeed(child : Operation) -> UntilSucceedOperation:
 
 #region Control
 
-## Modulates the targets alpha 0-1.
+## Modulates the targets alpha from 0 to 1.
 ## FIXME No support for variadic functions in GDScript (https://github.com/godotengine/godot-proposals/issues/1034)
 static func control_fade_in(arg1 : Control = null, arg2 : Control = null, arg3 : Control = null, arg4 : Control = null, arg5 : Control = null, arg6 : Control = null, arg7 : Control = null, arg8 : Control = null, arg9 : Control = null) -> Operation:
-	return Op.sequence()
+	var visible := parallel()
+	var para = parallel()
+	_control_fade_in(arg1, visible, para)
+	_control_fade_in(arg2, visible, para)
+	_control_fade_in(arg3, visible, para)
+	_control_fade_in(arg4, visible, para)
+	_control_fade_in(arg5, visible, para)
+	_control_fade_in(arg6, visible, para)
+	_control_fade_in(arg7, visible, para)
+	_control_fade_in(arg8, visible, para)
+	_control_fade_in(arg9, visible, para)
+	return sequence(visible, para)
 
-## Modulates the targets alpha 1-0.
+## Private function needed since control_fade_in doesn't used variadic parameters
+static func _control_fade_in(control : Control, visible : Operation, para : Operation):
+	if control:
+		control.set_thread_safe("modulate", Color(1, 1, 1, 0))
+		visible.children.append(node_visible(true).set_target(control))
+		para.children.append(node_modulate(Color(1, 1, 1, 1), .15).set_target(control))
+
+## Modulates the targets alpha from 1 to 0.
 ## FIXME No support for variadic functions in GDScript (https://github.com/godotengine/godot-proposals/issues/1034)
 static func control_fade_out(arg1 : Control = null, arg2 : Control = null, arg3 : Control = null, arg4 : Control = null, arg5 : Control = null, arg6 : Control = null, arg7 : Control = null, arg8 : Control = null, arg9 : Control = null) -> Operation:
-	return Op.sequence()
+	var visible := parallel()
+	var para = parallel()
+	_control_fade_out(arg1, visible, para)
+	_control_fade_out(arg2, visible, para)
+	_control_fade_out(arg3, visible, para)
+	_control_fade_out(arg4, visible, para)
+	_control_fade_out(arg5, visible, para)
+	_control_fade_out(arg6, visible, para)
+	_control_fade_out(arg7, visible, para)
+	_control_fade_out(arg8, visible, para)
+	_control_fade_out(arg9, visible, para)
+	return sequence(para, visible)
 
-## Interpolates the targets scale from .5-1.
+## Private function needed since control_fade_out doesn't used variadic parameters
+static func _control_fade_out(control : Control, visible : Operation, para : Operation):
+	if control:
+		visible.children.append(node_visible(false).set_target(control))
+		para.children.append(node_modulate(Color(1, 1, 1, 0), .15).set_target(control))
+
+## Interpolates the targets scale from .5 to 1.
 ## FIXME No support for variadic functions in GDScript (https://github.com/godotengine/godot-proposals/issues/1034)
 static func control_scale_in(arg1 : Control = null, arg2 : Control = null, arg3 : Control = null, arg4 : Control = null, arg5 : Control = null, arg6 : Control = null, arg7 : Control = null, arg8 : Control = null, arg9 : Control = null) -> Operation:
-	return Op.sequence()
+	var visible := parallel()
+	var para = parallel()
+	_control_scale_in(arg1, visible, para)
+	_control_scale_in(arg2, visible, para)
+	_control_scale_in(arg3, visible, para)
+	_control_scale_in(arg4, visible, para)
+	_control_scale_in(arg5, visible, para)
+	_control_scale_in(arg6, visible, para)
+	_control_scale_in(arg7, visible, para)
+	_control_scale_in(arg8, visible, para)
+	_control_scale_in(arg9, visible, para)
+	return sequence(visible, para)
 
-## Interpolates the targets scale from 1-.5.
+## Private function needed since control_scale_in doesn't used variadic parameters
+static func _control_scale_in(control : Control, visible : Operation, para : Operation):
+	if control:
+		control.set_thread_safe("pivot_offset", control.size / 2)
+		control.set_thread_safe("scale", Vector2(.5, .5))
+		visible.children.append(node_visible(true).set_target(control))
+		para.children.append(node_scale2D(Vector2(1.0, 1.0), .15, false, false).set_target(control))
+
+## Interpolates the targets scale from 1 to .5.
 ## FIXME No support for variadic functions in GDScript (https://github.com/godotengine/godot-proposals/issues/1034)
 static func control_scale_out(arg1 : Control = null, arg2 : Control = null, arg3 : Control = null, arg4 : Control = null, arg5 : Control = null, arg6 : Control = null, arg7 : Control = null, arg8 : Control = null, arg9 : Control = null) -> Operation:
-	return Op.sequence()
+	var visible := parallel()
+	var para = parallel()
+	_control_scale_out(arg1, visible, para)
+	_control_scale_out(arg2, visible, para)
+	_control_scale_out(arg3, visible, para)
+	_control_scale_out(arg4, visible, para)
+	_control_scale_out(arg5, visible, para)
+	_control_scale_out(arg6, visible, para)
+	_control_scale_out(arg7, visible, para)
+	_control_scale_out(arg8, visible, para)
+	_control_scale_out(arg9, visible, para)
+	return sequence(para, visible)
 
-## Modulates the targets alpha 0-1 and interpolates the targets scale from .5-1.
-## FIXME No support for variadic functions in GDScript (https://github.com/godotengine/godot-proposals/issues/1034)
-static func control_scale_fade_in(arg1 : Control = null, arg2 : Control = null, arg3 : Control = null, arg4 : Control = null, arg5 : Control = null, arg6 : Control = null, arg7 : Control = null, arg8 : Control = null, arg9 : Control = null) -> Operation:
-	return Op.sequence()
+## Private function needed since control_scale_out doesn't used variadic parameters
+static func _control_scale_out(control : Control, visible : Operation, para : Operation):
+	if control:
+		visible.children.append(node_visible(false).set_target(control))
+		para.children.append(node_scale2D(Vector2(.5, .5), .15, false, false).set_target(control))
 
-## Modulates the targets alpha 1-0 and interpolates the targets scale from 1-.5.
+## Modulates the targets alpha from 0 to alpha and interpolates the targets scale from .5 to 1.
 ## FIXME No support for variadic functions in GDScript (https://github.com/godotengine/godot-proposals/issues/1034)
-static func control_scale_fade_out(arg1 : Control = null, arg2 : Control = null, arg3 : Control = null, arg4 : Control = null, arg5 : Control = null, arg6 : Control = null, arg7 : Control = null, arg8 : Control = null, arg9 : Control = null) -> Operation:
-	return Op.sequence()
+static func control_scale_fade_in(alpha : float, arg1 : Control = null, arg2 : Control = null, arg3 : Control = null, arg4 : Control = null, arg5 : Control = null, arg6 : Control = null, arg7 : Control = null, arg8 : Control = null, arg9 : Control = null) -> Operation:
+	var visible := parallel()
+	var para = parallel()
+	_control_scale_fade_in(alpha, arg1, visible, para)
+	_control_scale_fade_in(alpha, arg2, visible, para)
+	_control_scale_fade_in(alpha, arg3, visible, para)
+	_control_scale_fade_in(alpha, arg4, visible, para)
+	_control_scale_fade_in(alpha, arg5, visible, para)
+	_control_scale_fade_in(alpha, arg6, visible, para)
+	_control_scale_fade_in(alpha, arg7, visible, para)
+	_control_scale_fade_in(alpha, arg8, visible, para)
+	_control_scale_fade_in(alpha, arg9, visible, para)
+	return sequence(visible, para)
+
+## Private function needed since control_scale_fade_in doesn't used variadic parameters
+static func _control_scale_fade_in(alpha : float, control : Control, visible : Operation, para : Operation):
+	if control:
+		control.set_thread_safe("pivot_offset", control.size / 2)
+		control.set_thread_safe("scale", Vector2(.5, .5))
+		control.set_thread_safe("modulate", Color(1, 1, 1, 0))
+		visible.children.append(node_visible(true).set_target(control))
+		para.children.append(node_scale2D(Vector2(1.0, 1.0), .15, false, false).set_target(control))
+		para.children.append(node_modulate(Color(1, 1, 1, alpha), .15, false).set_target(control))
+
+## Modulates the targets alpha from alpha to 0 and interpolates the targets scale from 1 to .5.
+## FIXME No support for variadic functions in GDScript (https://github.com/godotengine/godot-proposals/issues/1034)
+static func control_scale_fade_out(alpha : float, arg1 : Control = null, arg2 : Control = null, arg3 : Control = null, arg4 : Control = null, arg5 : Control = null, arg6 : Control = null, arg7 : Control = null, arg8 : Control = null, arg9 : Control = null) -> Operation:
+	var visible := parallel()
+	var para = parallel()
+	_control_scale_fade_out(alpha, arg1, visible, para)
+	_control_scale_fade_out(alpha, arg2, visible, para)
+	_control_scale_fade_out(alpha, arg3, visible, para)
+	_control_scale_fade_out(alpha, arg4, visible, para)
+	_control_scale_fade_out(alpha, arg5, visible, para)
+	_control_scale_fade_out(alpha, arg6, visible, para)
+	_control_scale_fade_out(alpha, arg7, visible, para)
+	_control_scale_fade_out(alpha, arg8, visible, para)
+	_control_scale_fade_out(alpha, arg9, visible, para)
+	return sequence(para, visible)
+
+## Private function needed since control_scale_fade_out doesn't used variadic parameters
+static func _control_scale_fade_out(alpha : float, control : Control, visible : Operation, para : Operation):
+	if control:
+		visible.children.append(node_visible(false).set_target(control))
+		para.children.append(node_scale2D(Vector2(.5, .5), .15, false, false).set_target(control))
+		para.children.append(node_modulate(Color(1, 1, 1, alpha), .15, false).set_target(control))
 
 #endregion
