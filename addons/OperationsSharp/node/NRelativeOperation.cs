@@ -31,12 +31,12 @@ public abstract class NRelativeOperation : TimeOperation
     public Tween.TransitionType TransType = Tween.TransitionType.Linear;
     public Tween.EaseType EaseType = Tween.EaseType.InOut;
 
-    protected Variant _start, _goal;
+    protected Variant start, goal;
 
     public override void Start()
     {
-        _start = Node.Get(Property);
-        _goal = DeltaValue();
+        start = Node.Get(Property);
+        goal = DeltaValue();
     }
 
     protected abstract Variant DeltaValue();
@@ -44,7 +44,7 @@ public abstract class NRelativeOperation : TimeOperation
     public override Status Act(double delta)
     {
         Status status = base.Act(delta);
-        Variant value = Tween.InterpolateValue(_start, _goal, Percent, 1, TransType, EaseType);
+        Variant value = Tween.InterpolateValue(start, goal, Percent, 1, TransType, EaseType);
         Node.Set(Property, value);
         return status;
     }

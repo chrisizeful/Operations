@@ -27,7 +27,7 @@ public class NRotate2DOperation : NRelativeOperation
     protected override Variant DeltaValue()
     {
         float rotation = Value.AsSingle();
-        return Relative ? rotation : rotation - _start.AsSingle();
+        return Relative ? rotation : rotation - start.AsSingle();
     }
 }
 
@@ -56,6 +56,6 @@ public class NRotate3DOperation : NRelativeOperation
     protected override Variant DeltaValue()
     {
         Vector3 rotation = Value.AsVector3();
-        return Relative ? rotation : rotation - _start.AsVector3();
+        return Relative ? rotation : rotation - start.AsVector3();
     }
 }

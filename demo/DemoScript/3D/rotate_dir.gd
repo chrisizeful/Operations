@@ -12,7 +12,7 @@ func start():
 	super.start()
 	var delta = node.position - position
 	_start = node.rotation.y
-	_rot_target = atan2(delta.x, delta.y)
+	_rot_target = atan2(delta.x, delta.z)
 
 func act(delta : float):
 	## Call super act beforehand instead of just returning it so the percent will be correct when used.

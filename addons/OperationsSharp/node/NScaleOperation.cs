@@ -27,7 +27,7 @@ public class NScale2DOperation : NRelativeOperation
     protected override Variant DeltaValue()
     {
         Vector2 scale = Value.AsVector2();
-        return Relative ? scale : scale - _start.AsVector2();
+        return Relative ? scale : scale - start.AsVector2();
     }
 }
 
@@ -56,6 +56,6 @@ public class NScale3DOperation : NRelativeOperation
     protected override Variant DeltaValue()
     {
         Vector3 scale = Value.AsVector3();
-        return Relative ? scale : scale - _start.AsVector3();
+        return Relative ? scale : scale - start.AsVector3();
     }
 }

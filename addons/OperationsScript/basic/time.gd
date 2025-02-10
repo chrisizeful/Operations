@@ -20,8 +20,8 @@ var percent : float:
 
 func restart():
 	super.restart()
-	time = 0
-	percent = 0
+	_time = 0
+	_percent = 0
 
 func act(delta : float) -> Status:
 	_time += delta

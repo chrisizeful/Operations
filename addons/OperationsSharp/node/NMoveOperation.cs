@@ -27,7 +27,7 @@ public class NMove2DOperation : NRelativeOperation
     protected override Variant DeltaValue()
     {
         Vector2 position = Value.AsVector2();
-        return Relative ? position : position - _start.AsVector2();
+        return Relative ? position : position - start.AsVector2();
     }
 }
 
@@ -56,6 +56,6 @@ public class NMove3DOperation : NRelativeOperation
     protected override Variant DeltaValue()
     {
         Vector3 position = Value.AsVector3();
-        return Relative ? position : position - _start.AsVector3();
+        return Relative ? position : position - start.AsVector3();
     }
 }

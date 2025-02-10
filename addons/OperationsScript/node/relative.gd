@@ -10,7 +10,7 @@ var property : StringName
 ## if value is Vector2(200, 200) and a Node is positioned at (100, 100):
 ##	 Relative: ending position will be (300, 300)
 ##	 Not relative: ending position will be (200, 200)
-var relative : bool
+var relative := true
 ## Whether operations will take place in global or local space.
 var global : bool
 
@@ -29,6 +29,6 @@ func _delta_value() -> Variant:
 
 func act(delta : float) -> Status:
 	var status = super.act(delta)
-	var value = Tween.interpolate_value(_start, _goal, percent, 1, trans_type, ease_type)
+	var value = Tween.interpolate_value(_start, _goal, _percent, 1, trans_type, ease_type)
 	node.set(property, value)
 	return status
