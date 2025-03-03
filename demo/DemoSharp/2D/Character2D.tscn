@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dya66i5ci8xbf"]
 
 [ext_resource type="Texture2D" uid="uid://ddhwv28sscpp0" path="res://assets/kenney_shape-characters/body/blue/blue_body_circle.png" id="1_7fxww"]
-[ext_resource type="Script" path="res://demo/DemoSharp/2D/Character2D.cs" id="2_chyoi"]
+[ext_resource type="Script" uid="uid://cnm8bb1g57vu2" path="res://demo/DemoSharp/2D/Character2D.cs" id="2_chyoi"]
 [ext_resource type="Texture2D" uid="uid://dwesi2iu6cykt" path="res://assets/kenney_shape-characters/face/face_a.png" id="2_mbh3a"]
 [ext_resource type="Texture2D" uid="uid://ga0q37p1v8j7" path="res://assets/kenney_shape-characters/hand/blue/blue_hand_closed.png" id="4_0nujw"]
 
