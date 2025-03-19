@@ -24,8 +24,8 @@ public partial class Demo2D : Node2D
 			AddChild(character);
 
 			// This operation is repeated infinitely. An action is used in order to create a new operation
-			// every repetition. Alternatively, the operation could've been stored outside the sequence and
-			// just had its data changed in the action (see Demo3D for that).
+			// every repetition. Alternatively, the operation could've been stored outside the sequence
+			// (see Demo3D for that).
 			float duration = 3.0f;
 			Operation parent = Sequence();
 			oper.Add(Repeat(
