@@ -60,6 +60,13 @@ public static partial class Op
         return op;
     }
 
+    public static FuncOperation Funco(Func<Operation.Status> func)
+    {
+        FuncOperation op = Pools.Obtain<FuncOperation>();
+        op.Func = func;
+        return op;
+    }
+
     public static PressedOperation Pressed(StringName action)
     {
         PressedOperation operation = Pools.Obtain<PressedOperation>();

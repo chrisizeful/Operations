@@ -35,6 +35,11 @@ static func defer(operation : Operation) -> DeferOperation:
 	op.operation = operation
 	return op
 
+static func funco(sfunc : Callable) -> FuncOperation:
+	var op = FuncOperation.new()
+	op.sfunc = sfunc
+	return op
+
 static func pressed(action : StringName) -> PressedOperation:
 	var operation := PressedOperation.new()
 	operation.action = action
