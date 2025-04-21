@@ -2,6 +2,8 @@ class_name Operation
 extends Object
 ## The base class for all operations.
 
+## An optional name, can be used for debugging purposes.
+var name : String
 ##  The operation that controls/parents this one.
 var control : Operation
 ## The operation that guards this one (i.e. this operation will not process unless this guard succeeds).
@@ -23,6 +25,10 @@ var current : Status
 var process_mode : Node.ProcessMode
 ## What happens if the <see cref="Target"/> is invalidated (i.e. freed from memory).
 var invalid : InvalidPolicy
+
+func set_name(name : String) -> Operation:
+	self.name = name
+	return self
 
 ## Sets the operation that will "guard" this one. If the guard does not have a target,
 ## it's target will be set to this operations target.

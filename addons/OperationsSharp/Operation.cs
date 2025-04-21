@@ -12,6 +12,12 @@ public class Operation : IPoolable
 {
 
     /// <summary>
+    /// An optional name, can be used for debugging purposes.
+    /// </summary>
+#nullable enable
+    public string? Name;
+#nullable disable
+    /// <summary>
     /// The operation that controls/parents this one.
     /// </summary>
     public Operation Control;
@@ -48,6 +54,18 @@ public class Operation : IPoolable
     /// What happens if the <see cref="Target"/> is invalidated (i.e. freed from memory).
     /// </summary>
     public InvalidPolicy Invalid = InvalidPolicy.Success;
+
+#nullable enable
+    /// <summary>
+    /// Sets the name of this operation.
+    /// </summary>
+    /// <returns>This operation for chaining.</returns>
+    public Operation SetName(string? name)
+    {
+        Name = name;
+        return this;
+    }
+#nullable disable
 
     /// <summary>
     /// Sets the operation that will "guard" this one. If the guard does not have a target,
