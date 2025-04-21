@@ -172,7 +172,7 @@ func run(delta : float):
 	if current != Status.Running && current != Status.Fresh:
 		return
 	# Fail if no validator or target is not valid
-	if !target_validator || !target_validator.call(target):
+	if !target_validator || !target_validator.call(self):
 		return
 	# Check if operation is fresh
 	if current == Status.Fresh:

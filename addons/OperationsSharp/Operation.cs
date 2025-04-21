@@ -269,7 +269,7 @@ public class Operation : IPoolable
         if (Current is not Status.Running and not Status.Fresh)
             return;
         // Fail if no validator or target is not valid
-        if (TargetValidator == null || !TargetValidator.Invoke(Target))
+        if (TargetValidator == null || !TargetValidator.Invoke(this))
         {
             if (Invalid == InvalidPolicy.Success) Success();
             else Fail();
@@ -324,7 +324,7 @@ public class Operation : IPoolable
     /// </summary>
     /// <param name="target">The target of an operation.</param>
     /// <returns></returns>
-    public delegate bool Validator(object target);
+    public delegate bool Validator(Operation operaiton);
     
     /// <summary>
     /// An enum for determining the status after an operation is run.

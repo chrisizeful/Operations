@@ -78,11 +78,11 @@ public partial class Operator
     /// <summary>
     /// The default validator that determines if a <see cref="Node"/> is valid.
     /// </summary>
-    /// <param name="target">The target of an operation.</param>
+    /// <param name="operation">The operation whose target to check.</param>
     /// <returns>If the target is valid and not queued for deletion.</returns>
-    public static bool IsNodeValid(object target)
+    public static bool IsNodeValid(Operation operation)
     {
-        Node node = (Node) target;
+        Node node = (Node) operation.Target;
         return GodotObject.IsInstanceValid(node) && !node.IsQueuedForDeletion();
     }
 
@@ -106,7 +106,7 @@ public partial class Operator
             return true;
         if (operation.Current is not Operation.Status.Running and not Operation.Status.Fresh)
             return true;
-        if (operation.TargetValidator == null || !operation.TargetValidator.Invoke(operation.Target))
+        if (operation.TargetValidator == null || !operation.TargetValidator.Invoke(operation))
             return true;
         // Run
         operation.Run(tree.Root.GetProcessDeltaTime());

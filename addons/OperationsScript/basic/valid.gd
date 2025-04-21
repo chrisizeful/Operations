@@ -4,6 +4,6 @@ extends Operation
 ## is valid. Fail if invalid, otherwise succeed.
 
 func act(delta : float) -> Status:
-	if !target_validator.call(target):
+	if !target_validator.call(self):
 		return Status.Failed
 	return Status.Succeeded

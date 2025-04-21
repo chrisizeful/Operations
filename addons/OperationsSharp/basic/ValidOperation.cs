@@ -9,7 +9,7 @@ public class ValidOperation : Operation
 
     public override Status Act(double delta)
     {
-        if (!TargetValidator.Invoke(Target))
+        if (!TargetValidator.Invoke(this))
             return Status.Failed;
         return Status.Succeeded;
     }

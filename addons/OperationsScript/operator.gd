@@ -30,9 +30,10 @@ func add(operation : Operation):
 	operations.append(operation)
 
 ## The default validator that determines if a <see cref="Node"/> is valid.
-## <param name="target">The target of an operation.</param>
+## <param name="operation">The operation whose target to check.</param>
 ## <returns>If the target is valid and not queued for deletion.</returns>
-static func is_node_valid(target):
+static func is_node_valid(operation):
+	var target = operation.target
 	return is_instance_valid(target) && !target.is_queued_for_deletion()
 
 ## Process a single operation.
@@ -52,7 +53,7 @@ static func process_single(tree : SceneTree, operation : Operation):
 		return true
 	if operation.current != Operation.Status.Running and operation.current != Operation.Status.Fresh:
 		return true
-	if !operation.target_validator || !operation.target_validator.call(operation.target):
+	if !operation.target_validator || !operation.target_validator.call(operation):
 		return true
 	# Run
 	operation.run(tree.root.get_process_delta_time())
