@@ -141,6 +141,17 @@ public class Operation : IPoolable
     }
 
     /// <summary>
+    /// A convenience method to add a child Operation.
+    /// </summary>
+    /// <param name="child">The child to add.</param>
+    /// <returns>This operation for chaining.</returns>
+    public Operation AddChild(Operation child)
+    {
+        Children.Add(child);
+        return this;
+    }
+
+    /// <summary>
     /// Sets the operation back to its initial state so it can be run again.
     /// </summary>
     public virtual void Restart()

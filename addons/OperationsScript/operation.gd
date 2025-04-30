@@ -79,6 +79,13 @@ func set_invalid_policy(invalid : InvalidPolicy) -> Operation:
 		child.set_invalid_policy(invalid)
 	return self
 
+## A convenience method to add a child Operation.
+## <param name="child">The child to add.</param>
+## <returns>This operation for chaining.</returns>
+func add_child(child : Operation) -> Operation:
+	children.append(child)
+	return self
+
 ## Sets the operation back to its initial state so it can be run again.
 func restart():
 	# Cancel but reset status
