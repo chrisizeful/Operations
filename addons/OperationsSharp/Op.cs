@@ -287,6 +287,16 @@ public static partial class Op
         return operation;
     }
 
+    public static NTransform3DOperation NodeTransform3D(Transform3D transform, float duration, bool relative = true, bool global = false, Tween.TransitionType transType = Tween.TransitionType.Linear, Tween.EaseType easeType = Tween.EaseType.InOut)
+    {
+        return NodeRelative<NTransform3DOperation>(transform, duration, relative, global, transType, easeType);
+    }
+
+    public static NTransform2DOperation NodeTransform2D(Transform2D transform, float duration, bool relative = true, bool global = false, Tween.TransitionType transType = Tween.TransitionType.Linear, Tween.EaseType easeType = Tween.EaseType.InOut)
+    {
+        return NodeRelative<NTransform2DOperation>(transform, duration, relative, global, transType, easeType);
+    }
+
     public static NVisibleOperation NodeVisible(bool visible)
     {
         NVisibleOperation operation = Pools.Obtain<NVisibleOperation>();

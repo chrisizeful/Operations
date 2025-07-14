@@ -32,8 +32,10 @@ public partial class Demo3D : Node3D
 			Operation scaler = Sequence();
 			for (int j = 0; j < count; j++)
 			{
-				scaler.Children.Add(NodeScale3D(new(-.1f, -.1f, -.1f), duration / count / 2, true, false, Tween.TransitionType.Back));
-				scaler.Children.Add(NodeScale3D(new(.1f, .1f, .1f), duration / count / 2, true, false, Tween.TransitionType.Back));
+				Transform3D scaleDown = new(Basis.Identity.Scaled(new(.9f, .9f, .9f)), Vector3.Zero);
+				scaler.Children.Add(NodeTransform3D(scaleDown, duration / count / 2, true, false, Tween.TransitionType.Back));
+				Transform3D scaleUp = new(Basis.Identity.Scaled(new(1.1f, 1.1f, 1.1f)), Vector3.Zero);
+				scaler.Children.Add(NodeTransform3D(scaleUp, duration / count / 2, true, false, Tween.TransitionType.Back));
 			}
 			// This operation is repeated infinitely. An action is used to update the operations every repetition.
 			Vector3 pos = new((float) GD.RandRange(-4.0f, 4.0f), 0, (float) GD.RandRange(-2.0f, 2.0f));
@@ -46,7 +48,8 @@ public partial class Demo3D : Node3D
 						move.Position = newPos;
 						dir.Position = newPos;
 					}),
-					Parallel(scaler, dir, move)
+					Parallel(dir, move),
+					scaler
 				)).SetTarget(vehicle));
 		}
 	}

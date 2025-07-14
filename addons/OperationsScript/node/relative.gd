@@ -29,6 +29,8 @@ func _delta_value() -> Variant:
 
 func act(delta : float) -> Status:
 	var status = super.act(delta)
-	var value = Tween.interpolate_value(_start, _goal, _percent, 1, trans_type, ease_type)
-	node.set(property, value)
+	node.set(property, _interpolate())
 	return status
+
+func _interpolate() -> Variant:
+	return Tween.interpolate_value(_start, _goal, _percent, 1, trans_type, ease_type)

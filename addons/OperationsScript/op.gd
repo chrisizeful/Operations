@@ -233,6 +233,26 @@ static func node_signal(signal_name : StringName) -> NSignalOperation:
 	operation.signal_name = signal_name
 	return operation
 
+static func node_transform2D(transform : Transform2D, duration : float, relative := true, global := false, trans_type := Tween.TransitionType.TRANS_LINEAR, ease_type := Tween.EaseType.EASE_IN_OUT) -> NTransform2DOperation:
+	var operation := NTransform2DOperation.new()
+	operation.transform = transform
+	operation.duration = duration
+	operation.relative = relative
+	operation.global = global
+	operation.trans_type = trans_type
+	operation.ease_type = ease_type
+	return operation
+	
+static func node_transform3D(transform : Transform3D, duration : float, relative := true, global := false, trans_type := Tween.TransitionType.TRANS_LINEAR, ease_type := Tween.EaseType.EASE_IN_OUT) -> NTransform3DOperation:
+	var operation := NTransform3DOperation.new()
+	operation.transform = transform
+	operation.duration = duration
+	operation.relative = relative
+	operation.global = global
+	operation.trans_type = trans_type
+	operation.ease_type = ease_type
+	return operation
+
 static func node_visible(visible : bool) -> NVisibleOperation:
 	var operation := NVisibleOperation.new()
 	operation.visible = visible

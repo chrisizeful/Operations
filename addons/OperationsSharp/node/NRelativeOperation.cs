@@ -7,7 +7,7 @@ namespace Operations;
 /// </summary>
 public abstract class NRelativeOperation : TimeOperation
 {
-    
+
     /// <summary>
     /// The value to interpolate to.
     /// </summary>
@@ -27,7 +27,7 @@ public abstract class NRelativeOperation : TimeOperation
     /// Whether operations will take place in global or local space.
     /// </summary>
     public bool Global;
-    
+
     public Tween.TransitionType TransType = Tween.TransitionType.Linear;
     public Tween.EaseType EaseType = Tween.EaseType.InOut;
 
@@ -44,8 +44,12 @@ public abstract class NRelativeOperation : TimeOperation
     public override Status Act(double delta)
     {
         Status status = base.Act(delta);
-        Variant value = Tween.InterpolateValue(start, goal, Percent, 1, TransType, EaseType);
-        Node.Set(Property, value);
+        Node.Set(Property, Interpolate());
         return status;
+    }
+
+    protected virtual Variant Interpolate()
+    {
+        return Tween.InterpolateValue(start, goal, Percent, 1, TransType, EaseType);
     }
 }
