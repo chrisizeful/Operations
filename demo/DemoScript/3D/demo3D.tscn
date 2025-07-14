@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://os4wjwjbsmn7"]
 
-[ext_resource type="Script" uid="uid://b7hhbg7gbults" path="res://demo/DemoScript/3D/demo_3d.gd" id="1_36g13"]
+[ext_resource type="Script" uid="uid://b7hhbg7gbults" path="res://demo/DemoScript/3D/demo_3D.gd" id="1_36g13"]
 
 [sub_resource type="Environment" id="Environment_hhb6i"]
 
