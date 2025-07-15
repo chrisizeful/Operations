@@ -1,6 +1,8 @@
 class_name NTransform3DOperation
 extends NRelativeOperation
+## Interpolates the transform of the target Node3D.
 
+## The target transform.
 var transform : Transform3D:
 	get:
 		return value

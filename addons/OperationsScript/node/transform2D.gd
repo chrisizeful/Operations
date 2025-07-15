@@ -1,6 +1,8 @@
 class_name NTransform2DOperation
 extends NRelativeOperation
+## Interpolates the transform of the target Node2D.
 
+## The target transform.
 var transform : Transform2D:
 	get:
 		return value
