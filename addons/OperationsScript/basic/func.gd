@@ -1,5 +1,4 @@
-class_name FuncOperation
-extends Operation
+class_name FuncOperation extends Operation
 ### Delegates status to a function.
 
 ### The function that returns/determines the operation status.

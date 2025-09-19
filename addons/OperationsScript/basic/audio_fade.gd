@@ -1,5 +1,4 @@
-class_name AudioFadeOperation
-extends TimeOperation
+class_name AudioFadeOperation extends TimeOperation
 ## Scales the <see cref="AudioStreamPlayer.VolumeDb"/> of an <see cref="AudioStreamPlayer"/> over time.
 
 func act(delta : float) -> Status:

@@ -1,5 +1,4 @@
-class_name RandomSelectorOperation
-extends Operation
+class_name RandomSelectorOperation extends Operation
 ## Randomly sets an order to run its children in. Will fail if all children fail in order,
 ## or succeed if one succeeds in the process.
 

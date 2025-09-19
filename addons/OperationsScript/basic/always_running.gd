@@ -1,5 +1,4 @@
-class_name AlwaysRunningOperation
-extends Operation
+class_name AlwaysRunningOperation extends Operation
 ## Always returns a <see cref="Operation.Status.Running"/> status.
 
 func child_success():

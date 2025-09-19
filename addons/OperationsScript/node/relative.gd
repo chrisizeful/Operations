@@ -1,6 +1,5 @@
 @abstract
-class_name NRelativeOperation
-extends TimeOperation
+class_name NRelativeOperation extends TimeOperation
 ## Interpolates a property on the target node over time.
 
 ## The value to interpolate to.

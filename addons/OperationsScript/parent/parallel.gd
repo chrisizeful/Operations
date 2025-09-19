@@ -1,5 +1,4 @@
-class_name ParallelOperation
-extends Operation
+class_name ParallelOperation extends Operation
 ## Runs all child operations at the same time.
 
 ## The policy to use for defining how/when this operation will fail/succeed.

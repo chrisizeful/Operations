@@ -1,5 +1,4 @@
-class_name InvertOperation
-extends Operation
+class_name InvertOperation extends Operation
 ## Fails when a child succeeds and succeeds when a child fails, inverting the result.
 
 func act(delta : float) -> Status:

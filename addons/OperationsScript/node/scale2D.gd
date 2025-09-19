@@ -1,5 +1,4 @@
-class_name NScale2DOperation
-extends NRelativeOperation
+class_name NScale2DOperation extends NRelativeOperation
 ## Scales the target 2D node.
 
 ## The target scale.

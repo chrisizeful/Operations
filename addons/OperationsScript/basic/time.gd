@@ -1,6 +1,5 @@
 @abstract
-class_name TimeOperation
-extends Operation
+class_name TimeOperation extends Operation
 ## Waits a specific <see cref="Duration"/> in seconds.
 
 ## The time in seconds to wait.

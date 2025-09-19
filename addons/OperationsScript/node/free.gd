@@ -1,5 +1,4 @@
-class_name NFreeOperation
-extends Operation
+class_name NFreeOperation extends Operation
 ## Calls <see cref="Node.QueueFree"/> on the target and immediatley returns <see cref="Operation.Status.Succeeded"/>.
 
 func act(delta : float) -> Status:

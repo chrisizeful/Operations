@@ -1,5 +1,4 @@
-class_name TimeScaleOperation
-extends Operation
+class_name TimeScaleOperation extends Operation
 ## Runs children with a delta value scaled by <see cref="Scale"/>.
 
 ## The value to scale time (delta) by.

@@ -1,5 +1,4 @@
-class_name NReadyOperation
-extends Operation
+class_name NReadyOperation extends Operation
 ## Waits for the target node to be ready until returning Status.Succeeded.
 
 func act(delta : float) -> Status:

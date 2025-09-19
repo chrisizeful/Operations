@@ -1,5 +1,4 @@
-class_name ValidOperation
-extends Operation
+class_name ValidOperation extends Operation
 ## Uses the <see cref="Operation.TargetValidator"/> to determine if the <see cref="Operation.Target"/>
 ## is valid. Fail if invalid, otherwise succeed.
 

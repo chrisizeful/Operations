@@ -1,5 +1,4 @@
-class_name JustPressedOperation
-extends Operation
+class_name JustPressedOperation extends Operation
 ## Returns <see cref="Operation.Status.Succeeded"/> if the provided <see cref="Action"/> is just pressed.
 
 ## The action to await input for.

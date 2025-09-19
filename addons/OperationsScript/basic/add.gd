@@ -1,5 +1,4 @@
-class_name AddOperation
-extends Operation
+class_name AddOperation extends Operation
 ## Adds the provided <see cref="Operation"/> to the <see cref="Operator" then immediately returns a <see cref="Operation.Status.Succeeded"/> status. 
 
 ## The Operator to add to the <see cref="Operation"/> to. 

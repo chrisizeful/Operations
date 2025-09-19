@@ -1,5 +1,4 @@
-class_name NParticleOperation
-extends Operation
+class_name NParticleOperation extends Operation
 ## Plays a particles scene at a specified position. The particles can be any one of the Godot particle nodes.
 
 ## The path of the particles scene.

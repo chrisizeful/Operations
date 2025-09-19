@@ -1,5 +1,4 @@
-class_name RandomOperation
-extends Operation
+class_name RandomOperation extends Operation
 ## Once the child operation is complete, randomly fail or succeed.
 ## If there are children, it will randomly fail or succeed immediately.
 

@@ -1,5 +1,4 @@
-class_name NMethodOperation
-extends Operation
+class_name NMethodOperation extends Operation
 ## Interpolates on a Callable (method) over time from <see cref="From"/> to <see cref="To"/>.
 
 ## The method to interpolate.

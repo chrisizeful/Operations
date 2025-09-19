@@ -1,5 +1,4 @@
-class_name NTransform3DOperation
-extends NRelativeOperation
+class_name NTransform3DOperation extends NRelativeOperation
 ## Interpolates the transform of the target Node3D.
 
 ## The target transform.

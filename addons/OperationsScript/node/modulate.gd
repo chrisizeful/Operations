@@ -1,5 +1,4 @@
-class_name NModulateOperation
-extends TimeOperation
+class_name NModulateOperation extends TimeOperation
 ## Interpolates the color of a the target <see cref="CanvasItem"/> over time (i.e. an <see cref="Node2D"/> or <see cref="Control"/>).
 
 ## The target color.

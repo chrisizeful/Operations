@@ -1,5 +1,4 @@
-class_name ManualOperation
-extends Operation
+class_name ManualOperation extends Operation
 ## Does not continuously set it's own status like other operations, instead it must be manually set by the user.
 
 func run(delta : float):

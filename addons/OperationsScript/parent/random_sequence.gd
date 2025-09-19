@@ -1,5 +1,4 @@
-class_name RandomSequenceOperation
-extends Operation
+class_name RandomSequenceOperation extends Operation
 ## Randomly sets an order to run its children in. Succeed if all children succeed in order,
 ## or fail if one fails in the process.
 

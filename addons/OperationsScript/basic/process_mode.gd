@@ -1,5 +1,4 @@
-class_name ProcessModeOperation
-extends Operation
+class_name ProcessModeOperation extends Operation
 ##  Sets the <see cref="Node.ProcessModeEnum"/> of the provided <see cref="TargetOperation"/> to <see cref="Set"/>.
 ## If no <see cref="TargetOperation"/> is provided, then the <see cref="Node.ProcessModeEnum"/> of this operation
 ## is changed.

@@ -1,5 +1,4 @@
-class_name NPropertyOperation
-extends TimeOperation
+class_name NPropertyOperation extends TimeOperation
 ## Interpolates on a property over time from the current value of the property to that value
 ## plus delta.
 

@@ -1,5 +1,4 @@
-class_name NRotate3DOperation
-extends NRelativeOperation
+class_name NRotate3DOperation extends NRelativeOperation
 ## Rotates the target 3D node.
 
 ## The target rotation.

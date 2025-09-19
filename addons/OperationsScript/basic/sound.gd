@@ -1,5 +1,4 @@
-class_name SoundOperation
-extends Operation
+class_name SoundOperation extends Operation
 ## Plays the provided sound at <see cref="Path"/> through the <see cref="Bus"/>. Uses an <see cref="AudioStreamPlayer"/> parented
 ## to the <see cref="Parent"/>, or the target node if null.
 

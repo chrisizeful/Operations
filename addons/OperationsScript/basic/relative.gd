@@ -1,5 +1,4 @@
-class_name RelativeTimeOperation
-extends TimeOperation
+class_name RelativeTimeOperation extends TimeOperation
 ## Acts on relative time changes between frames instead of the overall complete percentage.
 
 var _last_percent : float

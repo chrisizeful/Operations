@@ -1,5 +1,4 @@
-class_name NMove3DOperation
-extends NRelativeOperation
+class_name NMove3DOperation extends NRelativeOperation
 ## Moves the target 3D node to the provided position over time.
 
 ## The target 3D position.

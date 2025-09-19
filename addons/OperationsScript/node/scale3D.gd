@@ -1,5 +1,4 @@
-class_name NScale3DOperation
-extends NRelativeOperation
+class_name NScale3DOperation extends NRelativeOperation
 ## Scales the target 3D node.
 
 ## The target scale.

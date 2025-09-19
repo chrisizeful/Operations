@@ -1,5 +1,4 @@
-class_name ActionOperation
-extends Operation
+class_name ActionOperation extends Operation
 
 var action : Callable
 

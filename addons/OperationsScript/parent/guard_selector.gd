@@ -1,5 +1,4 @@
-class_name GuardSelectorOperation
-extends Operation
+class_name GuardSelectorOperation extends Operation
 ## An operation for defining complex behaviors using guard operations. Every run,
 ## it will check the guards of all its children. The first child operation whose guard
 ## passes (either because it succeeded or the operation lacks a guard) will be run.

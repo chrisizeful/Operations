@@ -1,5 +1,4 @@
-class_name SelectorOperation
-extends Operation
+class_name SelectorOperation extends Operation
 ## Fail if all children fail in order, or succeed if one succeeds in the process.
 
 var _index : int

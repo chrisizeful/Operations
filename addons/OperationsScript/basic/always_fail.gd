@@ -1,5 +1,4 @@
-class_name AlwaysFailOperation
-extends Operation
+class_name AlwaysFailOperation extends Operation
 ## Returns a <see cref="Operation.Status.Failed"/> status when a child succeeds. If no children exist, a
 ## <see cref="Operation.Status.Failed"/> status is immediately set.
 

@@ -1,5 +1,4 @@
-class_name NSetOperation
-extends Operation
+class_name NSetOperation extends Operation
 ## Sets a property in the target node then immediatley returns Status.Succeeded.
 
 ## The name of the property to set.

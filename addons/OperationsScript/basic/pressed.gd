@@ -1,5 +1,4 @@
-class_name PressedOperation
-extends Operation
+class_name PressedOperation extends Operation
 ## Returns <see cref="Operation.Status.Succeeded"/> if the provided <see cref="Action"/> is pressed.
 
 ## The action to await input for.

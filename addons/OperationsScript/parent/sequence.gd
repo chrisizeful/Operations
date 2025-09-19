@@ -1,5 +1,4 @@
-class_name SequenceOperation
-extends Operation
+class_name SequenceOperation extends Operation
 ## Runs all children in order, one at a time.
 
 ## The policy to use for defining how/when this operation will fail/succeed.

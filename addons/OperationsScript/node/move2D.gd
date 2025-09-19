@@ -1,5 +1,4 @@
-class_name NMove2DOperation
-extends NRelativeOperation
+class_name NMove2DOperation extends NRelativeOperation
 ## Moves the target 2D node to the provided position over time.
 
 ## The target 2D position.

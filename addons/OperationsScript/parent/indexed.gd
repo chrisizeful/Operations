@@ -1,5 +1,4 @@
-class_name IndexedOperation
-extends Operation
+class_name IndexedOperation extends Operation
 ## Runs the child operation at the specified <see cref="Index"/>.
 
 ## Runs the child operation at the specified <see cref="Index"/>.

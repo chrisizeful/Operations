@@ -1,5 +1,4 @@
-class_name RepeatOperation
-extends Operation
+class_name RepeatOperation extends Operation
 ## The number of times to run the child operation, or zero for infinite times.
 
 ## The number of times to run the child operation, or zero for infinite times.

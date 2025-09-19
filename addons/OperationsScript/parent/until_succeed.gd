@@ -1,5 +1,4 @@
-class_name UntilSucceedOperation
-extends Operation
+class_name UntilSucceedOperation extends Operation
 ## Runs children until one returns a success status. Ignores failure statuses.
 
 func act(delta : float) -> Status:

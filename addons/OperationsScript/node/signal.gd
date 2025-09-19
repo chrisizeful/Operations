@@ -1,5 +1,4 @@
-class_name NSignalOperation
-extends Operation
+class_name NSignalOperation extends Operation
 ## Forces the target node to emit the signal named SignalName
 
 ## The name of the signal to emit.

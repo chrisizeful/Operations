@@ -1,5 +1,4 @@
-class_name PrintOperation
-extends Operation
+class_name PrintOperation extends Operation
 ## Prints the provided <see cref="What"/> to the console.
 
 ## What to print.
