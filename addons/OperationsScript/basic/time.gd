@@ -1,3 +1,4 @@
+@abstract
 class_name TimeOperation
 extends Operation
 ## Waits a specific <see cref="Duration"/> in seconds.
